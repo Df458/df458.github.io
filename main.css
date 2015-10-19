@@ -19,17 +19,18 @@ body {
     height: 100%;
     background: #333333;
     border-right: 1px solid black;
-    transition: width 0.5s ease-in 0.5s;
+    transition: width 0.25s ease-in 0.25s;
 }
 #sidebar-main:hover {
     width: 12em;
-    transition: width 0.5s ease-out;
+    transition: width 0.25s ease-out;
 }
 #sidebar-main:hover .sidebar-expanded {
     visibility: visible;
 }
-#sidebar-main a {
+.sidebar-entry a {
     text-decoration: none;
+    color: white;
 }
 
 #sidebar-main .sidebar-expanded {
@@ -37,16 +38,17 @@ body {
     font-family: 'Raleway', sans-serif;
     font-size: 1.5em;
     font-weight: 700;
-    transition: visibility 0s linear 0.5s;
+    transition: visibility 0s linear 0.25s;
 }
 
 .sidebar-entry {
     width: 100%;
     height: 2em;
-    color: white;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
-    border-bottom: 1px solid #222222;
+}
+.sidebar-entry+.sidebar-entry {
+    border-top: 1px solid #222222;
 }
 .sidebar-entry:hover {
     background: #666666;
@@ -60,9 +62,7 @@ body {
 }
 
 .site-content {
-    margin-left: 3em;
-    background: #444444;
+    padding-left: 3em;
     color: white;
-    width: 100%;
     height: 100%;
 }

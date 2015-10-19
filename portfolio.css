@@ -1,0 +1,78 @@
+.site-content {
+    background: #55555a;
+}
+
+h1 {
+    padding-top: 0.5em;
+    text-align: center;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0));
+    width: 40%;
+    margin-top: 0.1em;
+}
+
+.subject-selector {
+    width: 40%;
+    display: flex;
+    justify-content:  center;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.subject-selector span {
+    border: 1px solid white;
+    padding: 0.1em;
+    background-image: linear-gradient(to top, rgba(130, 130, 130, 1), rgba(200, 200, 200, 1), rgba(200, 200, 200, 1), rgba(200, 200, 200, 1));
+    border-bottom-color: #555555;
+    border-left: none;
+    border-right: none;
+    color: #232323;
+}
+.subject-selector span:hover {
+    background-image: linear-gradient(to top, rgba(170, 170, 170, 1), rgba(240, 240, 240, 1), rgba(240, 240, 240, 1), rgba(240, 240, 240, 1));
+}
+.subject-selector span+span {
+    border-left: 1px solid;
+    border-left-color: #555555;
+}
+.subject-selector span:first-child {
+    border-left: 1px solid;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-left-color: #777777;
+}
+.subject-selector span:last-child {
+    border-right: 1px solid;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-right-color: #999999;
+}
+
+.portfolio-entry {
+    /*border: 1px solid white;*/
+    width: 45%;
+    padding: 0.4em;
+    margin: 0.5em;
+    /*background-image: linear-gradient(to top, rgba(80, 80, 80, 1), rgba(110, 110, 110, 1), rgba(110, 110, 110, 1), rgba(110, 110, 110, 1));*/
+    float: left;
+}
+
+.portfolio-entry header {
+    font-size: 1.5em;
+    font-family: "Raleway";
+    border-bottom: 1px solid white;
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.portfolio-entry img {
+    width: 6em;
+    height: 6em;
+    display: inline;
+    float: left;
+    margin: 0.3em;
+}
