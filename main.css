@@ -99,6 +99,12 @@ body {
     color: #eee;
 }
 
+#main-name img {
+    height: 1.25em;
+    vertical-align: text-top;
+    padding-right: .25em;
+}
+
 .page-content {
     padding-top:   2.9em;
     padding-left:  0.4em;
