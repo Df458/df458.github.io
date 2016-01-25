@@ -4,6 +4,10 @@ body {
     font: 13px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
 }
 
+h1 {
+    margin: 0;
+}
+
 .main-bar {
     width: 100%;
     height: 2.5em;
@@ -117,6 +121,7 @@ body {
 
 .soft-flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .software-entry {
