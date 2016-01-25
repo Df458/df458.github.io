@@ -114,3 +114,47 @@ body {
 .sub-nav + .page-content {
     padding-top:   4.4em;
 }
+
+.soft-flex {
+    display: flex;
+}
+
+.software-entry {
+    border: 1px solid #ccc;
+    min-width: 300px;
+    max-width: 45%;
+    min-height: 144px;
+    background-color: #eee;
+    box-shadow: 0 0 8px #ccc;
+    margin: 1em;
+    padding: 0.25em;
+}
+
+.software-entry>h2 {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.software-entry>h3 {
+    margin-top: 0.75em;
+    margin-bottom: 0.25em;
+}
+
+.software-entry>p {
+    font-size: 1.25em;
+    margin: 0;
+    color: #333;
+}
+
+.software-entry>a {
+    text-decoration: none;
+}
+
+.software-entry>img {
+    border: 2px solid;
+    width: 128px;
+    height: 128px;
+    float: left;
+
+    margin: 0.5em;
+}
