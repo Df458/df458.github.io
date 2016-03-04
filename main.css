@@ -119,6 +119,29 @@ h1 {
     padding-top:   4.4em;
 }
 
+.main-image {
+    width: 15em;
+    height: 15em;
+    /*float: left;*/
+    border: 1px solid #111;
+    margin: 1em;
+}
+
+section {
+    display: inline-block;
+}
+
+.name {
+    width: 500px;
+    /*display: inline;*/
+    /*border-bottom: 1px solid #111;*/
+}
+
+.subtitle {
+    color: #666;
+    margin-top: 0.25em;
+}
+
 .soft-flex {
     display: flex;
     flex-wrap: wrap;
