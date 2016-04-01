@@ -133,13 +133,17 @@ section {
 
 .name {
     width: 500px;
-    /*display: inline;*/
-    /*border-bottom: 1px solid #111;*/
+    margin-top: 0.3em;
 }
 
 .subtitle {
     color: #666;
-    margin-top: 0.25em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#description {
+    margin: 0.25em;
 }
 
 .soft-flex {
@@ -185,4 +189,38 @@ section {
     float: left;
 
     margin: 0.5em;
+}
+
+#skills-wrap {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+
+.side-content {
+}
+
+.about-overview {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.about-overview#skills{
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    align-content: center;
+    -webkit-align-content: center;
+}
+
+#skills h2 {
+    text-align: center;
+    border-bottom: 1px solid #666;
+    width: 24%;
+    margin-left: 38%;
+}
+
+.skill-list {
+    margin-left: 3em;
+    margin-right: 3em;
 }
