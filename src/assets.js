@@ -10,11 +10,11 @@ var loaded_count = 0;
 function load_assets()
 {
     resource_path = "data";
-    s_ship = new Spriteset("sprites", "player.spr");
+    s_ship = new Spriteset("sprites", "player.xml");
     s_ship.onready = asset_loaded;
-    s_icon = new Spriteset("sprites", "icons.spr");
+    s_icon = new Spriteset("sprites", "icons.xml");
     s_icon.onready = asset_loaded;
-    s_bullet = new Spriteset("sprites", "shot.spr");
+    s_bullet = new Spriteset("sprites", "shot.xml");
     s_bullet.onready = asset_loaded;
 }
 
