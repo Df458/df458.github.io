@@ -46,7 +46,7 @@ class Spriteset
         if(arguments.length >= 2) {
             this.path = arguments[0];
             this.name = arguments[1];
-            load_resource_to_buffer(arguments[0], arguments[1], function(request, user) { user.prepare(request.response) }, this, "document");
+            load_resource_to_buffer(arguments[0], arguments[1], function(request, user) { console.log(request); user.prepare(request.response); }, this, "document");
         }
     }
 
