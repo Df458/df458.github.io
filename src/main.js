@@ -3,7 +3,7 @@ function tick()
     update_input();
     ctx.clear(ctx.COLOR_BUFFER_BIT | ctx.DEPTH_BUFFER_BIT);
     update_bullets();
-    if(Math.random() * 100 <= 1) {
+    if(Math.random() * (164 - ((enemy_goal - enemies_left) * 3)) <= 1 && enemies_left > 0) {
         create_enemy([Math.random() * 1000, Math.random() * 750], Math.random() * Math.PI * 2);
     }
     update_enemies();

@@ -28,7 +28,7 @@ class Enemy
             this.transform.translate([Math.cos(this.transform.angle) * this.speed, Math.sin(this.transform.angle) * this.speed], true);
             this.transform.rotate(this.rotvel, true);
             this.rotvel += (Math.random() * 0.3 - 0.15) * (Math.PI / 180);
-            if(Math.random() * 100 <= 1)
+            if(Math.random() * (164 - ((enemy_goal - enemies_left) * 3)) <= 1)
                 create_bullet(this.transform.position, this.transform.angle, false);
             if(Math.abs(this.rotvel) >= 0.075)
                 this.rotvel = 0;
@@ -37,6 +37,10 @@ class Enemy
             if(this.exploding == false) {
                 this.exploding = true
                 enemies_left--;
+                if(Math.random() * 8 < 1)
+                    bomb_count++;
+                else if(Math.random() * 12 < 1)
+                    life_count++;
                 this.sprite.setAnimation("explode");
                 this.sprite.play();
             } else {
