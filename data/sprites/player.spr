@@ -1,0 +1,5 @@
+<spriteset>
+    <animation name="default" loop="true" length="1" orients="1" file="player_fly.png"/>
+    <animation name="enemy1" play="false" loop="true" length="1" orients="1" file="enemy_1.png"/>
+    <animation name="explode" play="true" loop="false" length="6" orients="1" speed="2" file="explosion.png"/>
+</spriteset>

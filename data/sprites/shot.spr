@@ -1,0 +1,6 @@
+<spriteset>
+    <animation name="player_shot"  play="true" loop="true" length="2" orients="1" file="shot_player.png"/>
+    <animation name="enemy_shot_1" play="true" loop="true" length="2" orients="1" file="shot_enemy_1.png"/>
+    <animation name="enemy_shot_2" play="false" loop="false" length="1" orients="1" file="shot_enemy_2.png"/>
+    <animation name="enemy_shot_3" play="true" loop="true" length="2" orients="1" file="shot_enemy_3.png"/>
+</spriteset>

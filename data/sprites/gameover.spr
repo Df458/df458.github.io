@@ -1,0 +1,3 @@
+<spriteset>
+    <animation name="default" play="false" loop="false" length="1" orients="0" file="gameover.png"/>
+</spriteset>

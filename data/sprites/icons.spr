@@ -1,0 +1,6 @@
+<spriteset>
+    <animation name="bombs" play="false" loop="false" length="1" orients="1" file="bomb_icon.png"/>
+    <animation name="lives" play="false" loop="false" length="1" orients="1" file="life_icon.png"/>
+    <animation name="enemies" play="false" loop="false" length="1" orients="1" file="enemy_icon.png"/>
+    <animation name="kills" play="false" loop="false" length="1" orients="1" file="done_icon.png"/>
+</spriteset>
