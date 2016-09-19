@@ -44,6 +44,7 @@ h1 {
     display: -webkit-flex;
     justify-content: center;
     -webkit-justify-content: center;
+    z-index: 999;
 }
 
 .nav-entry {
@@ -223,4 +224,99 @@ section {
 .skill-list {
     margin-left: 3em;
     margin-right: 3em;
+}
+
+.content-tile {
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #777;
+    border-radius: 5px;
+    margin: 1em;
+
+    font-family: sans-serif;
+    min-height: 20em;
+    min-width: 25em;
+    max-width: 25em;
+    box-shadow: 0 0 8px #ccc;
+    position: relative;
+}
+
+.tile-body {
+    background-color: rgba(239, 239, 239, 0.8);
+    padding: 0.5em;
+    margin-top: 5em;
+    border-radius: 0 0 5px 5px;
+    border-top: 1px solid #aaa;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.content-tile h1 {
+    color: #333;
+    font-size: 1.5em;
+    margin: 0;
+    overflow: hidden;
+}
+
+.content-tile p {
+    color: #777;
+    margin-top: 0.1em;
+    margin-bottom: 0;
+}
+
+.darkener {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.darkener:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    background: #eee;
+    padding: 1em;
+    border-radius: 1em;
+    position: fixed;
+    top: 6em;
+    left: 3em;
+    right: 3em;
+    bottom: 3em;
+}
+
+.close-button {
+    float: right;
+}
+
+.popup-content {
+    overflow-y: auto;
+    margin: 1em;
+}
+
+.popup-content h1 {
+    font-family: sans-serif;
+    font-size: 1.5em;
+}
+
+.popup-content h2 {
+    font-family: sans-serif;
+    font-size: 1.25em;
+    color: #333;
+}
+
+.popup-main-image {
+    float: left;
+    max-width: 30%;
+    margin: 0.5em;
+    border: 1px solid #ccc;
 }
