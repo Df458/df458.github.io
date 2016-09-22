@@ -1,5 +1,8 @@
 <html>
 <head>
+    <link rel='stylesheet' href='main.css'>
+    <link rel='icon' href='img/dflogo.svg' type="image/x-icon">
+    <title>Hugues Ross - Core Breaker</title>
 <!-- IO JS -->
     <script src="dfgame/io_util.js"></script>
     <script src="dfgame/texture.js"></script>
@@ -25,9 +28,25 @@
     <script src="src/main.js"></script>
 </head>
 <body onload="start()">
-  <canvas id="dfgame-canvas" width="1024" height="768">
-    Your browser doesn't appear to support the 
-    <code>&lt;canvas&gt;</code> element.
-  </canvas>
+    <div class="main-bar">
+        <a id="main-name" href="index.html"><img src="img/dflogo.svg"/>Hugues Ross</a>
+        <div class="main-nav">
+            <a class="nav-entry" href="about.html">About Me</a>
+            <a class="nav-entry" href="portfolio-index.html">Portfolio</a>
+            <a class="nav-entry" href="http://huguesross.net">Blog</a>
+            <a class="nav-entry" id="selected" href="software.html">Software</a>
+        </div>
+    </div>
+    <div class="sub-nav">
+        <a class="subnav-entry" href="software.html">Software</a>
+        <a class="subnav-entry" id="selected" href="games.html">Games</a>
+    </div>
+    <!-- Main Area -->
+    <div class='page-content'>
+        <canvas id="dfgame-canvas" width="1024" height="768">
+            Your browser doesn't appear to support the 
+            <code>&lt;canvas&gt;</code> element.
+        </canvas>
+    </div>
 </body>
 </html>

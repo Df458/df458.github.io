@@ -6,6 +6,21 @@ body {
 
 h1 {
     margin: 0;
+    margin-left: 0.5em;
+    color: #222;
+    font-weight: lighter;
+}
+
+h2 {
+    margin: 0;
+    color: #333;
+    font-weight: lighter;
+}
+
+h3 {
+    margin: 0;
+    color: #777;
+    font-weight: lighter;
 }
 
 .main-bar {
@@ -150,6 +165,7 @@ section {
 .soft-flex {
     display: flex;
     flex-wrap: wrap;
+    padding-bottom: 1em;
 }
 
 .software-entry {
@@ -237,8 +253,15 @@ section {
     min-height: 20em;
     min-width: 25em;
     max-width: 25em;
-    box-shadow: 0 0 8px #ccc;
+    box-shadow: 0 0 8px #bbb;
     position: relative;
+    opacity: 0.9;
+    transition: box-shadow 0.5s, opacity 0.5s;
+}
+
+.content-tile:hover {
+    box-shadow: 0 0 16px #777;
+    opacity: 1;
 }
 
 .tile-body {
@@ -251,6 +274,12 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
+
+    transition: background-color 0.5s;
+}
+
+.content-tile:hover>.tile-body {
+    background-color: rgba(245, 245, 245, 0.9);
 }
 
 .content-tile h1 {
@@ -258,6 +287,7 @@ section {
     font-size: 1.5em;
     margin: 0;
     overflow: hidden;
+    border-bottom: none;
 }
 
 .content-tile p {
@@ -273,14 +303,15 @@ section {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    visibility: hidden;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s, visibility 0.5s;
+    visibility: hidden;
 }
 
 .darkener:target {
-    visibility: visible;
     opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
 }
 
 .popup {
@@ -292,14 +323,29 @@ section {
     left: 3em;
     right: 3em;
     bottom: 3em;
+    transform: translateY(-5%);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+    visibility: hidden;
+}
+
+.darkener:target+.popup {
+    opacity: 1;
+    transform: translateY(0%);
+    visibility: visible;
 }
 
 .close-button {
     float: right;
+    transform: scale(1);
+    transition: transform 0.2s;
+}
+
+.close-button:hover {
+    transform: scale(1.2);
 }
 
 .popup-content {
-    overflow-y: auto;
     margin: 1em;
 }
 
@@ -315,8 +361,19 @@ section {
 }
 
 .popup-main-image {
-    float: left;
-    max-width: 30%;
+    width: 30%;
+    height: 90%;
     margin: 0.5em;
-    border: 1px solid #ccc;
+    float: left;
+    border-right: 1px solid #ccc;
+    padding-right: 0.5em;
+}
+
+.popup-main-image > img {
+    width: 100%;
+}
+
+.popup-text {
+    overflow-y: auto;
+    display: block;
 }
