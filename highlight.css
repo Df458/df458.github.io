@@ -32,3 +32,7 @@ pre.hl	{
 .hl.kwc { color:#95f067; }
 .hl.kwd { color:#25faac; }
 
+.note pre.hl {
+    margin-left: 1em;
+    margin-right: 1em;
+}
