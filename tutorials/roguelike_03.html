@@ -1,0 +1,241 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='../main.css'>
+        <link rel='stylesheet' href='../tutorials.css'>
+        <link rel='stylesheet' href='../highlight.css'>
+        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <script src="popup_close.js"></script>
+    <title>Hugues Ross - Tutorials</title>
+    </head>
+    <body>
+    <div class="main-bar">
+        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+        <div class="main-nav">
+            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
+            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
+            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
+            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
+            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+        </div>
+    </div>
+    <!-- Main Area -->
+    <div class='page-content tutorial'>
+        <div class="tnav-flex">
+            <a href="roguelike_02.html" rel="prev">Previous Part</a>
+            <a href="roguelike_index.html">Index</a>
+            <a href="#" rel="next" class="tnav-spacer">Next Part</a>
+            <!-- <a href="roguelike_04.html" rel="next">Next Part</a> -->
+        </div>
+        <h1>Let's Make a Roguelike - 3 - Moving Around</h1>
+        <h2>Introduction</h2>
+        <p>
+            In the last entry, I covered the basics of curses.
+            Now, we're going to apply that knowledge to start making a game.
+        </p>
+
+        <h2>A Simple Map</h2>
+        <p>
+            The first thing we need to do is create an environment for the game to take place in.
+            We'll eventually be procedurally generating all of the maps in our game, but for now let's just make a big empty rectangle.
+            We'll want to draw one ASCII character for each grid square (referred to as tiles from now on).
+            We <i>could</i> draw our tiles line-by-line with the <b>printw()</b> command, but that's extra work.
+            Instead, we'll use something new.
+        </p>
+        <h3>Drawing the Map</h3>
+        <p>
+            For times when we just want to draw a single character, curses provides us with the <b>addch()</b> command.
+            This takes a character (represented as a full-size int, to allow for extended ASCII), and puts it wherever the cursor is.
+            Using the shortcut from last time, we can write a simple nested loop like so:
+        </p>
+<pre class="hl">
+<span class="hl lin">   27 </span>    <span class="hl kwb">int</span> lines <span class="hl opt">=</span> <span class="hl num">10</span><span class="hl opt">;</span>
+<span class="hl lin">   28 </span>    <span class="hl kwb">int</span> cols <span class="hl opt">=</span> <span class="hl num">10</span><span class="hl opt">;</span>
+<span class="hl lin">   29 </span>    <span class="hl kwb">int</span> character <span class="hl opt">=</span> <span class="hl str">&apos;.&apos;</span><span class="hl opt">;</span>
+<span class="hl lin">   30 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">   31 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> j <span class="hl opt">&lt;</span> cols<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">   32 </span>            <span class="hl kwd">mvaddch</span><span class="hl opt">(</span>i<span class="hl opt">,</span> j<span class="hl opt">,</span> character<span class="hl opt">);</span>
+<span class="hl lin">   33 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   34 </span>    <span class="hl opt">}</span>
+</pre>
+        <div class="note">
+            <h1>Note - Why the periods?</h1>
+            You can place any character for your background tiles, but I chose to use a period.
+            For me, this is mostly a matter of tradition, but the period also has some practical advantages:
+            <ol>
+                <li>A space character would give us just background, which is nice. However, the period lets us see the distinction between tiles, giving players a better way to judge distance.</li>
+                <li>Periods kinda look like little pebbles on the ground. Since many roguelikes take place in caves and dungeons, the look fits the setting somewhat</li>
+                <li>Most other small characters have other things about their shape that make them interesting, like curves or slants. This can make them useful for representing other game elements, whereas a period is tougher to use.</li>
+            </ol>
+            Ultimately, I think the best solution for ground tiles is to have several characters distributed randomly, because it breaks up any repetition.
+            There's no sense in doing that before we start generating levels, so for now I'll be using periods.
+        </div>
+
+        <h3>Putting it Together</h3>
+        <p>
+            Our current map leaves <i>a lot</i> to be desired.
+            Since it's completely hard-coded, we can't generate anything in-game or make any changes to it.
+            On top of that, we're effectively limited to a single tile in a single color.
+        </p>
+        <p>
+            Our next step will be to make the map something that we can pass around and use properly.
+            Let's start by defining a struct for tiles and a struct for maps:
+        </p>
+<pre class="hl">
+<span class="hl lin">    3 </span><span class="hl ppc">#include &lt;inttypes.h&gt;</span>
+<span class="hl lin">    4 </span>
+<span class="hl lin">    5 </span><span class="hl kwc">typedef</span> <span class="hl kwb">struct</span> tile <span class="hl opt">{</span>
+<span class="hl lin">    6 </span>    <span class="hl kwb">uint8_t</span> character<span class="hl opt">;</span>
+<span class="hl lin">    7 </span>    <span class="hl kwb">int</span> color_pair<span class="hl opt">;</span>
+<span class="hl lin">    8 </span><span class="hl opt">}</span> tile<span class="hl opt">;</span>
+<span class="hl lin">    9 </span>
+<span class="hl lin">   10 </span><span class="hl kwc">typedef</span> <span class="hl kwb">struct</span> map <span class="hl opt">{</span>
+<span class="hl lin">   11 </span>    tile<span class="hl opt">**</span> data<span class="hl opt">;</span>
+<span class="hl lin">   12 </span>    <span class="hl kwb">uint16_t</span> lines<span class="hl opt">;</span>
+<span class="hl lin">   13 </span>    <span class="hl kwb">uint16_t</span> columns<span class="hl opt">;</span>
+<span class="hl lin">   14 </span><span class="hl opt">}</span> map<span class="hl opt">;</span>
+</pre>
+        <p>
+            Making a tile struct isn't strictly necessary, but it will be very helpful when we want to assign more information to tiles later.
+            Now, we can move our drawing code into a function and make it read from a map.
+            The final output is exactly the same as what we had before, but this implementation gives us a lot of options to work with.
+            While you're at it, I also recommend making functions to create/destroy maps.
+        </p>
+        <h2>The Player</h2>
+        <p>
+            We now have a map for our game to take place in, but we still need something to put inside of it.
+            To that end, let's add an actor that can walk around!
+        </p>
+        <p>
+            We're going to keep things simple for the moment, so for now our new struct will just hold a position and ASCII character.
+            Using mvaddch again, we can simply draw our actor onto the map:
+        </p>
+<pre class="hl">
+<span class="hl lin">   13 </span><span class="hl kwb">void</span> <span class="hl kwd">actor_draw</span><span class="hl opt">(</span>actor<span class="hl opt">*</span> a<span class="hl opt">) {</span>
+<span class="hl lin">   14 </span>    <span class="hl kwd">mvaddch</span><span class="hl opt">(</span>a<span class="hl opt">-&gt;</span>y<span class="hl opt">,</span> a<span class="hl opt">-&gt;</span>x<span class="hl opt">,</span> a<span class="hl opt">-&gt;</span>character<span class="hl opt">);</span>
+<span class="hl lin">   15 </span><span class="hl opt">}</span>
+</pre>
+
+        <h3>Moving Around</h3>
+        <p>
+            Our actor is drawn, but now we need to make it move around.
+            To accomplish this, we'll need two things:
+        </p>
+        <ol>
+            <li>A main loop</li>
+            <li>Input handling</li>
+        </ol>
+        <p>
+            For the uninitiated, a main loop is a loop that contains all of the repeated actions of a game/program.
+            For instance, in our case our main loop will get input, draw the game, and repeat.
+            When the game needs to exit, it usually just flips the value of a boolean that serves as the loop's condition.
+            That way, we can rest assured that the game can run just about forever, but it will exit gracefully when the user wants to quit.
+            For the moment, you can put the loop and input checks in <b>main()</b>, but as the project grows it would be wise to move them elsewhere.
+        </p>
+        <p>
+            Roguelikes use many varied input schemes, but for the sake of simplicity I'll show you how to get the arrow keys for movement.
+            I covered the <b>getch()</b> function in the last part, but one notable thing to consider is that <b>getch()</b> works with ints, just like <b>addch</b>.
+            Curses provides a number of constants that represent non-ASCII keys, but the ones we care about are <b>KEY_UP</b>, <b>KEY_DOWN</b>, <b>KEY_LEFT</b>, and <b>KEY_RIGHT</b>.
+            Along with a button for quitting (I recommend the 'q' key), we can check for these keys in a switch at the start of our main loop.
+            Since our player and map are available in structs, we can add/subtract 1 to the player's position as long as it falls within the map's boundary.
+            Since we're already drawing everything in our loop as well, we should now be able to walk around our field of ASCII.
+        </p>
+        <div class="note">
+            <h1>Note - Some Useful Headers</h1>
+
+            <b>inttypes</b>, the header that I'm using with some of my structs, is a handy header provided by the C standard. 
+            The sizes of most integer types (int, short, long, etc.) are <i>architecture-dependent</i>.
+            In other words, they may represent different ranges on different machines.
+            To ensure that our numbers are always the same size, we can use numbers from inttypes.h: uint8_t/int8_t for 8-bit numbers, uint16_t/int16_t for 16-bit, and so on.
+            <br/>
+            <b>stdbool</b> is pretty self-explanatory.
+            C doesn't come with support for booleans (true/false values) as a type built-in (it kind of does, but that's a very different topic), but with stdbool header we can use bools all we want.
+            <br/>
+            <b>compat.h</b> is a simple header with a macro that I devised.
+            Since I use different curses implementations on different PCs when building, I use the macro in compat.h to determine where my curses headers are located.
+            If you're just working on one system, it's probably unnecessary to do anything fancy like that.
+            However, if you have similar needs to my own then don't hesitate to use it for reference.
+        </div>
+<pre class="hl">
+<span class="hl lin">    1 </span><span class="hl slc">// Include the correct header for the library that we&apos;re using</span>
+<span class="hl lin">    2 </span><span class="hl ppc">#include</span> <span class="hl pps">&quot;compat.h&quot;</span><span class="hl ppc"></span>
+<span class="hl lin">    3 </span><span class="hl ppc">#include</span> <span class="hl pps">&quot;actor.h&quot;</span><span class="hl ppc"></span>
+<span class="hl lin">    4 </span><span class="hl ppc">#include</span> <span class="hl pps">&quot;map.h&quot;</span><span class="hl ppc"></span>
+<span class="hl lin">    5 </span><span class="hl ppc">#include &lt;stdbool.h&gt;</span>
+<span class="hl lin">    6 </span>
+<span class="hl lin">    7 </span><span class="hl kwb">int</span> <span class="hl kwd">main</span><span class="hl opt">() {</span>
+<span class="hl lin">    8 </span>    <span class="hl slc">// Initialize curses</span>
+<span class="hl lin">    9 </span>    <span class="hl kwd">initscr</span><span class="hl opt">();</span>
+<span class="hl lin">   10 </span>    <span class="hl kwd">keypad</span><span class="hl opt">(</span>stdscr<span class="hl opt">,</span> <span class="hl kwa">true</span><span class="hl opt">);</span>
+<span class="hl lin">   11 </span>
+<span class="hl lin">   12 </span>    map<span class="hl opt">*</span> test_map <span class="hl opt">=</span> <span class="hl kwd">map_new</span><span class="hl opt">(</span><span class="hl num">10</span><span class="hl opt">,</span> <span class="hl num">10</span><span class="hl opt">);</span>
+<span class="hl lin">   13 </span>    actor<span class="hl opt">*</span> actor <span class="hl opt">=</span> <span class="hl kwd">actor_new</span><span class="hl opt">(</span><span class="hl str">&apos;&#64;&apos;</span><span class="hl opt">,</span> <span class="hl num">3</span><span class="hl opt">,</span> <span class="hl num">3</span><span class="hl opt">);</span>
+<span class="hl lin">   14 </span>
+<span class="hl lin">   15 </span>    <span class="hl kwb">bool</span> should_continue <span class="hl opt">=</span> <span class="hl kwa">true</span><span class="hl opt">;</span>
+<span class="hl lin">   16 </span>    <span class="hl kwd">map_draw</span><span class="hl opt">(</span>test_map<span class="hl opt">);</span>
+<span class="hl lin">   17 </span>    <span class="hl kwd">actor_draw</span><span class="hl opt">(</span>actor<span class="hl opt">);</span>
+<span class="hl lin">   18 </span>    <span class="hl kwa">while</span><span class="hl opt">(</span>should_continue<span class="hl opt">) {</span>
+<span class="hl lin">   19 </span>        <span class="hl kwb">int</span> input <span class="hl opt">=</span> <span class="hl kwd">getch</span><span class="hl opt">();</span>
+<span class="hl lin">   20 </span>        <span class="hl kwa">switch</span><span class="hl opt">(</span>input<span class="hl opt">) {</span>
+<span class="hl lin">   21 </span>            <span class="hl kwa">case</span> <span class="hl str">&apos;q&apos;</span><span class="hl opt">:</span>
+<span class="hl lin">   22 </span>                should_continue <span class="hl opt">=</span> <span class="hl kwa">false</span><span class="hl opt">;</span>
+<span class="hl lin">   23 </span>                <span class="hl kwa">break</span><span class="hl opt">;</span>
+<span class="hl lin">   24 </span>            
+<span class="hl lin">   25 </span>            <span class="hl kwa">case</span> KEY_UP<span class="hl opt">:</span>
+<span class="hl lin">   26 </span>                <span class="hl kwa">if</span><span class="hl opt">(</span>actor<span class="hl opt">-&gt;</span>y <span class="hl opt">&gt;</span> <span class="hl num">0</span><span class="hl opt">)</span>
+<span class="hl lin">   27 </span>                    actor<span class="hl opt">-&gt;</span>y<span class="hl opt">--;</span>
+<span class="hl lin">   28 </span>                <span class="hl kwa">break</span><span class="hl opt">;</span>
+<span class="hl lin">   29 </span>            <span class="hl kwa">case</span> KEY_DOWN<span class="hl opt">:</span>
+<span class="hl lin">   30 </span>                <span class="hl kwa">if</span><span class="hl opt">(</span>actor<span class="hl opt">-&gt;</span>y <span class="hl opt">&lt;</span> test_map<span class="hl opt">-&gt;</span>lines <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">)</span>
+<span class="hl lin">   31 </span>                    actor<span class="hl opt">-&gt;</span>y<span class="hl opt">++;</span>
+<span class="hl lin">   32 </span>                <span class="hl kwa">break</span><span class="hl opt">;</span>
+<span class="hl lin">   33 </span>            <span class="hl kwa">case</span> KEY_LEFT<span class="hl opt">:</span>
+<span class="hl lin">   34 </span>                <span class="hl kwa">if</span><span class="hl opt">(</span>actor<span class="hl opt">-&gt;</span>x <span class="hl opt">&gt;</span> <span class="hl num">0</span><span class="hl opt">)</span>
+<span class="hl lin">   35 </span>                    actor<span class="hl opt">-&gt;</span>x<span class="hl opt">--;</span>
+<span class="hl lin">   36 </span>                <span class="hl kwa">break</span><span class="hl opt">;</span>
+<span class="hl lin">   37 </span>            <span class="hl kwa">case</span> KEY_RIGHT<span class="hl opt">:</span>
+<span class="hl lin">   38 </span>                <span class="hl kwa">if</span><span class="hl opt">(</span>actor<span class="hl opt">-&gt;</span>x <span class="hl opt">&lt;</span> test_map<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">)</span>
+<span class="hl lin">   39 </span>                    actor<span class="hl opt">-&gt;</span>x<span class="hl opt">++;</span>
+<span class="hl lin">   40 </span>                <span class="hl kwa">break</span><span class="hl opt">;</span>
+<span class="hl lin">   41 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   42 </span>        <span class="hl kwd">map_draw</span><span class="hl opt">(</span>test_map<span class="hl opt">);</span>
+<span class="hl lin">   43 </span>        <span class="hl kwd">actor_draw</span><span class="hl opt">(</span>actor<span class="hl opt">);</span>
+<span class="hl lin">   44 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   45 </span>
+<span class="hl lin">   46 </span>    <span class="hl kwd">actor_free</span><span class="hl opt">(</span>actor<span class="hl opt">);</span>
+<span class="hl lin">   47 </span>    <span class="hl kwd">map_free</span><span class="hl opt">(</span>test_map<span class="hl opt">);</span>
+<span class="hl lin">   48 </span>
+<span class="hl lin">   49 </span>    <span class="hl slc">// Clean up</span>
+<span class="hl lin">   50 </span>    <span class="hl kwd">endwin</span><span class="hl opt">();</span>
+<span class="hl lin">   51 </span>
+<span class="hl lin">   52 </span>    <span class="hl kwa">return</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">   53 </span><span class="hl opt">}</span>
+</pre>
+        <div class="note">
+            <h1>Note - Reading Non-Character Keys</h1>
+            If you add code precisely as it's described above, the actor won't move.
+            By default, curses receives function keys as sequences of chars because of its history as a terminal interface library.
+            By calling <b>keypad(stdscr, true)</b> right after initscr, curses will convert function key sequences into the relevant constants.
+            This particular type of function will be explained in more detail in the next part, but for now you can just put it in.
+        </div>
+        <p>
+            Next time, we'll look at some basic ways to generate a level and dive into the world of color.
+        </p>
+
+        <h2>Next Steps</h2>
+        <ol>
+            <li>At the moment, the cursor follows the player around and sits just to the right of it. Why does this happen? More importantly, can we put it somewhere else? Try to make the cursor sit directly on the actor, or put it in a corner.</li>
+            <li>If you make a large enough level, it won't fit onscreen. To fix that, try to make a viewport that follows the actor. Remember, moving your view in one direction can also be thought of as moving everything else in the opposite direction.</li>
+        </ol>
+
+        <h2>Code</h2>
+        <p>To download the code as of this part, <a href="https://github.com/Df458/Dark-Lands/archive/d08b506a029cb02071e92f0c03b58c8b00a0e131.zip">click here</a>.</p>
+
+        <div class="tnav-flex">
+            <a href="roguelike_02.html" rel="prev">Previous Part</a>
+            <a href="roguelike_index.html">Index</a>
+            <a href="#" rel="next" class="tnav-spacer">Next Part</a>
+            <!-- <a href="roguelike_04.html" rel="next">Next Part</a> -->
+        </div>
+    </div>
+    </body>
+</html>
