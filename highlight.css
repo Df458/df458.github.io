@@ -10,6 +10,7 @@ pre.hl	{
     border-radius: 3px;
     font-size: 10pt;
     font-family: 'Courier New', monospace;
+    overflow-x: auto;
 }
 .hl.num {
     color: #ae81ff;
