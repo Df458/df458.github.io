@@ -73,7 +73,7 @@ ul, ol {
     padding-bottom: 6px;
 }
 
-.note h1 {
+.note .note-heading {
     font-size: 1.25em;
     font-weight: 400;
     margin: 0;
@@ -85,7 +85,7 @@ ul, ol {
     border-top-right-radius: 5px;
 }
 
-.quote {
+q {
     display: block;
     margin-top: 1em;
     margin-left: 5%;
@@ -99,4 +99,11 @@ ul, ol {
     width: 50%;
     height: auto;
     margin-left: 25%;
+}
+
+@media (max-width: 750px) {
+    .center-screenshot {
+        margin-left: unset;
+        width: 100%;
+    }
 }

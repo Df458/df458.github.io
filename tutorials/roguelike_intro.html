@@ -1,25 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <div class="tnav-flex">
             <a href="#" rel="prev" class="tnav-spacer">Previous Part</a>
             <a href="roguelike_index.html">Index</a>
@@ -33,7 +36,7 @@
         Lastly, bear in mind that this tutorial is starting from scratch with curses. There are a number of libraries intended for roguelike development, but we won't be using them because I think the do-it-yourself way is more fun and educational.
         <h2>What's a Roguelike?</h2>
         If you're unsure of what a roguelike actually <b>is</b>, don't worry because you're not alone. The roguelike genre is notoriously tough to pin down, and there have been countless arguments as to what exactly defines one. One of the more common definitions is the <a href="http://www.roguebasin.com/index.php?title=Berlin_Interpretation">Berlin Interpretation</a>, which maps out the most common elements of roguelikes. Unfortunately, the Berlin Interpretation is not so much a definition as it is a checklist of common features, so it doesn't help us much. For the sake of simplicity, I will be using the following definition from now on:
-        <span class="quote">"A roguelike is a game that merges mechanics from the strategy and RPG genres, with procedurally generated environments, turn-based primarily non-modal actions, grid movement, elements of exploration or discovery, and permanent death. No in-game progress is carried over between playthroughs."</span>
+        <q>A roguelike is a game that merges mechanics from the strategy and RPG genres, with procedurally generated environments, turn-based primarily non-modal actions, grid movement, elements of exploration or discovery, and permanent death. No in-game progress is carried over between playthroughs.</q>
         That's quite the mouthful! Let's step through that and see what it really means:
         <ol>
             <li><b>Merges mechanics from RPGs and strategy games</b><p>Roguelikes borrow elements from several genres, without really feeling like any of them. The two that I listed are the closest that I can think of, but roguelikes don't really fit into one slot perfectly, hence why they're considered their own genre.</p>
@@ -56,6 +59,6 @@
             <a href="roguelike_index.html">Index</a>
             <a href="roguelike_01.html" rel="next">Next Part</a>
         </div>
-    </div>
+    </main>
     </body>
 </html>

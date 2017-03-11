@@ -1,25 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <div class="tnav-flex">
             <a href="roguelike_02.html" rel="prev">Previous Part</a>
             <a href="roguelike_index.html">Index</a>
@@ -56,8 +59,8 @@
 <span class="hl lin">   33 </span>        <span class="hl opt">}</span>
 <span class="hl lin">   34 </span>    <span class="hl opt">}</span>
 </pre>
-        <div class="note">
-            <h1>Note - Why the periods?</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - Why the periods?</h4>
             You can place any character for your background tiles, but I chose to use a period.
             For me, this is mostly a matter of tradition, but the period also has some practical advantages:
             <ol>
@@ -67,7 +70,7 @@
             </ol>
             Ultimately, I think the best solution for ground tiles is to have several characters distributed randomly, because it breaks up any repetition.
             There's no sense in doing that before we start generating levels, so for now I'll be using periods.
-        </div>
+        </aside>
 
         <h3>Putting it Together</h3>
         <p>
@@ -138,8 +141,8 @@
             Since our player and map are available in structs, we can add/subtract 1 to the player's position as long as it falls within the map's boundary.
             Since we're already drawing everything in our loop as well, we should now be able to walk around our field of ASCII.
         </p>
-        <div class="note">
-            <h1>Note - Some Useful Headers</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - Some Useful Headers</h4>
 
             <b>inttypes</b>, the header that I'm using with some of my structs, is a handy header provided by the C standard. 
             The sizes of most integer types (int, short, long, etc.) are <i>architecture-dependent</i>.
@@ -153,7 +156,7 @@
             Since I use different curses implementations on different PCs when building, I use the macro in compat.h to determine where my curses headers are located.
             If you're just working on one system, it's probably unnecessary to do anything fancy like that.
             However, if you have similar needs to my own then don't hesitate to use it for reference.
-        </div>
+        </aside>
 <pre class="hl">
 <span class="hl lin">    1 </span><span class="hl slc">// Include the correct header for the library that we&apos;re using</span>
 <span class="hl lin">    2 </span><span class="hl ppc">#include</span> <span class="hl pps">&quot;compat.h&quot;</span><span class="hl ppc"></span>
@@ -209,13 +212,13 @@
 <span class="hl lin">   52 </span>    <span class="hl kwa">return</span> <span class="hl num">0</span><span class="hl opt">;</span>
 <span class="hl lin">   53 </span><span class="hl opt">}</span>
 </pre>
-        <div class="note">
-            <h1>Note - Reading Non-Character Keys</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - Reading Non-Character Keys</h4>
             If you add code precisely as it's described above, the actor won't move.
             By default, curses receives function keys as sequences of chars because of its history as a terminal interface library.
             By calling <b>keypad(stdscr, true)</b> right after initscr, curses will convert function key sequences into the relevant constants.
             This particular type of function will be explained in more detail in the next part, but for now you can just put it in.
-        </div>
+        </aside>
         <p>
             Next time, we'll look at some basic ways to generate a level and dive into the world of color.
         </p>
@@ -234,6 +237,6 @@
             <a href="roguelike_index.html">Index</a>
             <a href="roguelike_04.html" rel="next">Next Part</a>
         </div>
-    </div>
+    </main>
     </body>
 </html>

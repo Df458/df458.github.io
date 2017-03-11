@@ -1,32 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <h1>Index: Let's Make a Roguelike!</h1>
+        <br/>
         <a href="roguelike_intro.html" class="list-link">Introduction</a>
         <a href="roguelike_01.html" class="list-link">1. Prep Work</a>
         <!-- <a href="roguelike_01_5.html" class="list&#45;link">1.5. Preparing Your Build Environment</a> -->
         <a href="roguelike_02.html" class="list-link">2. Curses 101</a>
         <a href="roguelike_03.html" class="list-link">3. Moving Around</a>
-        <a href="roguelike_04.html" class="list-link">4. Basic Generation: Caves and Natural Spaces</a>
-    </div>
+        <a href="roguelike_04.html" class="list-link">4. Basic Generation: Natural Spaces</a>
+    </main>
     </body>
 </html>

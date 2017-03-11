@@ -24,7 +24,7 @@ h3 {
     font-weight: normal;
 }
 
-.main-bar {
+header {
     width: 100%;
     height: 2.5em;
     top: 0;
@@ -50,70 +50,29 @@ h3 {
     -webkit-justify-content: center;
 }
 
-.sub-nav {
-    width: 100%;
-    height: 1.5em;
-
-    position: fixed;
-    margin-top: 2.5em;
-
-    display: flex;
-    display: -webkit-flex;
-    justify-content: center;
-    -webkit-justify-content: center;
-    z-index: 999;
-}
-
 .nav-entry {
     padding-top: .75em;
-    padding-bottom: .5em;
+    padding-bottom: .35em;
     font-family: sans;
     text-decoration: none;
     color: #eee;
+
+    /* padding-bottom: .35em; */
+    padding-left: 1em;
+    padding-right: 1em;
+    /* color: #eee; */
 }
 
 .nav-entry:hover {
     text-decoration: none;
 }
 
-.nav-entry>.nav-underline {
-    padding-bottom: .35em;
-    padding-left: 1em;
-    padding-right: 1em;
-    color: #eee;
-}
-
 .nav-entry+.nav-entry {
     border-left: 1px solid #555;
 }
 
-.nav-entry:hover>.nav-underline, .nav-entry#selected>.nav-underline {
+.nav-entry:hover, .nav-entry.selected {
     border-bottom: 3px solid #4ac;
-}
-
-.subnav-entry {
-    padding-top:    0.25em;
-    padding-bottom: 0.25em;
-    padding-left:   1em;
-    padding-right:  1em;
-
-    font-family: sans;
-    text-decoration: none;
-    color: #eee;
-
-    background-color: #789;
-}
-
-.subnav-entry:first-of-type {
-    border-bottom-left-radius: 3px;
-}
-
-.subnav-entry:last-of-type {
-    border-bottom-right-radius: 3px;
-}
-
-.subnav-entry:hover, .subnav-entry#selected {
-    color: #fe6;
 }
 
 #main-name {
@@ -128,32 +87,32 @@ h3 {
     color: #eee;
 }
 
-#main-name img {
+#main-name:before {
+    width: 1.25em;
     height: 1.25em;
     vertical-align: text-top;
-    padding-right: .25em;
+    margin-right: .25em;
+    background-image: url(img/dflogo.svg);
+    background-size: 1.25em 1.25em;
+    content: "";
+    display: inline-block;
 }
 
-.page-content {
-    padding-top:   2.9em;
-    padding-left:  0.4em;
-    padding-right: 0.4em;
+main {
     margin-left: 15%;
     margin-right: 15%;
     background: #fff;
     border: 1px solid #eee;
     padding: 2.9em 2em 2em 2em;
     margin-bottom: 1em;
-    box-shadow: 0 0 5px rgba(0, 0, 0, .2)
-}
-
-.sub-nav + .page-content {
-    padding-top:   4.4em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    bottom: 1em;
+    font: 16px/24px sans;
 }
 
 .main-image {
     width: 15em;
-    height: 15em;
+    height: 100%;
     border: 1px solid #111;
     margin: 1em;
     border-radius: 100%;
@@ -184,50 +143,11 @@ section {
     padding-bottom: 1em;
 }
 
-.software-entry {
-    border: 1px solid #ccc;
-    min-width: 300px;
-    max-width: 45%;
-    min-height: 144px;
-    background-color: #eee;
-    box-shadow: 0 0 8px #ccc;
-    margin: 1em;
-    padding: 0.25em;
-}
-
-.software-entry>h2 {
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-}
-
-.software-entry>h3 {
-    margin-top: 0.75em;
-    margin-bottom: 0.25em;
-}
-
-.software-entry>p {
-    font-size: 1.25em;
-    margin: 0;
-    color: #333;
-}
-
-.software-entry>a {
-    text-decoration: none;
-}
-
-.software-entry>img {
-    border: 2px solid;
-    width: 128px;
-    height: 128px;
-    float: left;
-
-    margin: 0.5em;
-}
-
 #skills-wrap {
     display: flex;
     display: -webkit-flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .side-content {
@@ -237,6 +157,7 @@ section {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .about-overview#skills{
@@ -266,13 +187,12 @@ section {
     margin: 1em;
 
     font-family: sans-serif;
-    min-height: 20em;
-    min-width: 25em;
+    min-height: 15em;
     max-width: 25em;
     box-shadow: 0 0 8px #bbb;
     position: relative;
     opacity: 0.9;
-    transition: box-shadow 0.5s, opacity 0.5s;
+    transition: box-shadow 0.5s, opacity 0.5s ease-out;
 }
 
 .content-tile:hover {
@@ -291,19 +211,20 @@ section {
     left: 0;
     right: 0;
 
-    transition: background-color 0.5s;
+    transition: background-color 0.5s ease-out;
 }
 
 .content-tile:hover>.tile-body {
     background-color: rgba(245, 245, 245, 0.9);
 }
 
-.content-tile h1 {
+.content-tile .title {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.25em;
     margin: 0;
     overflow: hidden;
     border-bottom: none;
+    font-weight: 200;
 }
 
 .content-tile p {
@@ -320,7 +241,7 @@ section {
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
-    transition: opacity 0.5s, visibility 0.5s;
+    transition: opacity 0.5s, visibility 0.5s ease-out;
     visibility: hidden;
 }
 
@@ -341,8 +262,9 @@ section {
     bottom: 3em;
     transform: translateY(-5%);
     opacity: 0;
-    transition: opacity 0.5s, transform 0.5s, visibility 0.5s;
+    transition: opacity 0.5s, transform 0.5s, visibility 0.5s ease-out;
     visibility: hidden;
+    overflow-y: auto;
 }
 
 .darkener:target+.popup {
@@ -354,7 +276,7 @@ section {
 .close-button {
     float: right;
     transform: scale(1);
-    transition: transform 0.2s;
+    transition: transform 0.2s ease-out;
 }
 
 .close-button:hover {
@@ -435,4 +357,66 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media (min-width: 1555px) {
+    .content-tile {
+        min-width: 30%;
+    }
+}
+
+@media (max-width: 1554px) and (min-width: 1070px) {
+    .content-tile {
+        min-width: 45%;
+    }
+}
+
+@media (max-width: 1065px) {
+    .content-tile {
+        min-width: 90%;
+        border-radius: 0;
+    }
+    .tile-body {
+        border-radius: 0;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 750px) {
+    main {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
+
+@media (max-width: 750px) {
+main {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .main-nav {
+        position: relative;
+        top: 0.7em;
+        background-color: #555;
+    }
+    header {
+        padding: 0;
+        height: 5.1em;
+    }
+    #main-name {
+        margin-left: 0.25em;
+    }
+    main {
+        padding: 5.2em 1em 1em 1em;
+    }
+    .popup {
+        left: 1em;
+        right: 1em;
+        bottom: 1em;
+        border-radius: 0.5em;
+    }
+    .popup-main-image {
+        width: unset;
+        float: unset;
+        border-right: unset;
+    }
 }

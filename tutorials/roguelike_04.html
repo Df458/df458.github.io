@@ -1,32 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <div class="tnav-flex">
             <a href="roguelike_03.html" rel="prev">Previous Part</a>
             <a href="roguelike_index.html">Index</a>
-            <a href="#" rel="next" class="tnav-spacer">Next Part</a>
+            <a href="#" rel="next" class="tnav-spacer" aria-hidden="true">Next Part</a>
             <!-- <a href="roguelike_05.html" rel="next">Next Part</a> -->
         </div>
-        <h1>Let's Make a Roguelike - 4 - Basic Generation: Caves and Natural Spaces</h1>
+        <h1>Let's Make a Roguelike - 4 - Basic Generation: Natural Spaces</h1>
         <p>
             Last time, we created an empty map for the player to walk around in.
             This time, we'll be turning that empty rectangle into a cavelike area.
@@ -84,12 +87,12 @@
             Depending on your game, there could be many different types of 'solid' tiles: water, pits, walls, doors, and more.
             For now, we'll just add a bool to our tile struct to decide whether or not an actor can move there.
         </p>
-        <div class="note">
-            <h1>Note - Dealing with bools</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - Dealing with bools</h4>
             The bool type isn't available in C by default.
             Normally, we could get it by including the stdbool.h header.
             However, curses already defines the type for us to use as we like!
-        </div>
+        </aside>
 
         <h2>Designing a Random Level</h2>
         <p>
@@ -151,7 +154,7 @@
         <p>
             The result is a messy, organic-looking map:
         </p>
-        <img class="center-screenshot" src="roguelike_04_01.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_04_01.png" alt="A screenshot displaying the results of a drunkard's walk: Organic zigzagging corridors connecting occasional larger open areas"/>
         <p>
             Here's the code I used to create the level above:
         </p>
@@ -215,7 +218,7 @@
             At the start of each cycle, we also mark a random number of non-solid tiles as solid, based on a given percentage.
             This has the effect of eroding away passable areas and smoothing them out at the same time:
         </p>
-        <img class="center-screenshot" src="roguelike_04_02.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_04_02.png" alt="A screenshot displaying the results of the erosion technique: Large, mostly open caverns with occasional tighter spaces"/>
 <pre class="hl">
 <span class="hl lin">   49 </span><span class="hl kwb">void</span> <span class="hl kwd">map_generate_erode</span><span class="hl opt">(</span>map<span class="hl opt">*</span> m<span class="hl opt">,</span> actor<span class="hl opt">*</span> a<span class="hl opt">) {</span>
 <span class="hl lin">   50 </span>    <span class="hl kwb">int</span> passcount         <span class="hl opt">=</span> <span class="hl num">3</span><span class="hl opt">;</span>  <span class="hl slc">// How many passes to perform</span>
@@ -346,9 +349,9 @@
         <div class="tnav-flex">
             <a href="roguelike_03.html" rel="prev">Previous Part</a>
             <a href="roguelike_index.html">Index</a>
-            <a href="#" rel="next" class="tnav-spacer">Next Part</a>
+            <a href="#" rel="next" class="tnav-spacer" aria-hidden="true">Next Part</a>
             <!-- <a href="roguelike_05.html" rel="next">Next Part</a> -->
         </div>
-    </div>
+    </main>
     </body>
 </html>

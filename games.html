@@ -1,445 +1,448 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='main.css'>
-        <link rel='icon' href='img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
-    <title>Hugues Ross - Games</title>
+        <title>Hugues Ross - Games</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="index.html"><img src="img/dflogo.svg"/>Hugues Ross</a>
-        <div class="main-nav">
-            <a class="nav-entry" href="about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" href="tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" id="selected" href="games.html"><span class="nav-underline">Games</span></a>
-        </div>
-    </div>
-    <!-- Main Area -->
-    <div class='page-content'>
-        <h1>Contributions</h1>
-        <div class="soft-flex">
-            <!--<a href="#duke-spook" class="content-tile" style="background-image: url('img/software-default.svg');">
-                <div class="tile-body">
-                    <h1>Duke Spookem 3D</h1>
-                    <p class="tile-date">In Development</p>
-                    <p class="tile-genre">Genre: FPS</p>
-                </div>
-            </a>-->
+        <header>
+            <a id="main-name" href="index.html">Hugues Ross</a>
+            <div class="main-nav">
+                <a class="nav-entry" href="about.html">About</a>
+                <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+                <a class="nav-entry" href="tutorials.html">Tutorials</a>
+                <a class="nav-entry" href="software.html">Software</a>
+                <a class="nav-entry selected" href="games.html">Games</a>
+            </div>
+        </header>
+        <!-- Main Area -->
+        <main role="main">
+            <h1>Contributions</h1>
+            <div class="soft-flex">
+                <!--<a href="#duke-spook" class="content-tile" style="background-image: url('img/software-default.svg');">
+                    <div class="tile-body">
+                        <h1>Duke Spookem 3D</h1>
+                        <p class="tile-date">In Development</p>
+                        <p class="tile-genre">Genre: FPS</p>
+                    </div>
+                </a>-->
 
-            <a href="#the-last-light" class="content-tile" style="background-image: url('https://img.itch.io/aW1hZ2UvNjQ3NTcvMjkyNzEzLmpwZw==/347x500/Hnzu%2By.jpg');">
-                <div class="tile-body">
-                    <h1>The Last Light</h1>
-                    <p class="tile-date">Completed <time>04/25/2016</time></p>
-                    <p class="tile-genre">Genre: Horror</p>
-                </div>
-            </a>
-        </div>
-        <h1>Game Projects</h1>
-        <div class="soft-flex">
-            <a href="#core-breaker" class="content-tile" style="background-image: url('https://2.bp.blogspot.com/-fBIOWR3HTm0/Vy1D9cinBDI/AAAAAAAAB9M/eBddEWXiCxknPMxfTVCPIqA4jc_2xRp4wCLcB/s640/Screenshot-2016-05-06-21%253A23%253A44.png');">
-                <div class="tile-body">
-                    <h1>Core Breaker</h1>
-                    <p class="tile-date">Completed <time>05/06/2016</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#cloudy-climb" class="content-tile" style="background-image: url('img/cloudy.png');">
-                <div class="tile-body">
-                    <h1>Cloudy Climb</h1>
-                    <p class="tile-date">Completed <time>07/19/2015</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#amaze" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/-rkTjCqFaNlg/UwuKju0of8I/AAAAAAAABcA/cXT6FUanhaM/s1600/Screenshot+from+2014-02-23+20:20:02.png');">
-                <div class="tile-body">
-                    <h1>AMAZE</h1>
-                    <p class="tile-date">Completed <time>04/25/2014</time></p>
-                    <p class="tile-genre">Genre: Puzzle</p>
-                </div>
-            </a>
-            <a href="#space-douchebag" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/-Unl2f8g7VVo/Uq9ZvMrsSXI/AAAAAAAABX8/_gpAr4Zig3k/s1600/SPDC.png');">
-                <div class="tile-body">
-                    <h1>Space Douchebag</h1>
-                    <p class="tile-date">Completed <time>12/13/2013</time></p>
-                    <p class="tile-genre">Genre: Shmup</p>
-                </div>
-            </a>
-        </div>
-        <h1>Game Jam Entries</h1>
-        <div class="soft-flex">
-            <a href="#growgue" class="content-tile" style="background-image: url('img/growgue-19.png');">
-                <div class="tile-body">
-                    <h1>Growgue</h1>
-                    <p class="tile-date">Completed <time>03/14/2016</time></p>
-                    <p class="tile-genre">Genre: Roguelike</p>
-                </div>
-            </a>
-            <a href="#to-the-west" class="content-tile" style="background-image: url('img/ttw.png');">
-                <div class="tile-body">
-                    <h1>To the West</h1>
-                    <p class="tile-date">Completed <time>03/14/2015</time></p>
-                    <p class="tile-genre">Genre: Roguelike</p>
-                </div>
-            </a>
-            <a href="#day-of-the-hotdog" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/&#45;v5T6yooA_DQ/U9RcWWJun_I/AAAAAAAABiw/7lKy9dIymmY/s1600/title.png');">
-                <div class="tile-body">
-                    <h1>Day of the Hotdog</h1>
-                    <p class="tile-date">Completed <time>07/27/2014</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#something-something-office-rampage" class="content-tile" style="background-image: url('http://3.bp.blogspot.com/&#45;eZjHOGb9vtE/UyNQ4YwNt8I/AAAAAAAABdI/UIYohOYUmWY/s1600/Screenshot+from+2014&#45;03&#45;14+13:36:04.png');">
-                <div class="tile-body">
-                    <h1>Something Something Office&#8230;</h1>
-                    <p class="tile-date">Completed <time>03/14/2014</time></p>
-                    <p class="tile-genre">Genre: Roguelike</p>
-                </div>
-            </a>
-            <a href="#doomsday-darren-goes-fishing" class="content-tile" style="background-image: url('http://3.bp.blogspot.com/&#45;OaykC8wCXn0/UaJHM5Duf0I/AAAAAAAAA_M/sCRNW3F8AQM/s1600/Screenshot+from+2013&#45;05&#45;26+13%253A29%253A52.png');">
-                <div class="tile-body">
-                    <h1>Doomsday Darren Goes Fishing</h1>
-                    <p class="tile-date">Completed <time>05/26/2013</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#diamond-rush" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/&#45;Glu&#45;92r_2DA/UQaFFEZu7QI/AAAAAAAAAwM/7anFxf50fy0/s1600/Title.png');">
-                <div class="tile-body">
-                    <h1>Diamond Rush</h1>
-                    <p class="tile-date">Completed <time>01/27/2013</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#a-wheelie-good-time" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/&#45;KoviXycpxDc/UM5NbA3DoOI/AAAAAAAAAkw/&#45;quB&#45;QlpM5E/s1600/Screenshot+from+2012&#45;12&#45;16+17%253A37%253A12.png');">
-                <div class="tile-body">
-                    <h1>A Wheelie Good Time</h1>
-                    <p class="tile-date">Completed <time>12/16/2012</time></p>
-                    <p class="tile-genre">Genre: Action</p>
-                </div>
-            </a>
-            <a href="#chainsaw-deathrace" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/&#45;gRa9zl9twg8/UI11Z&#45;k&#45;&#45;3I/AAAAAAAAAdU/rJliVk4jTwA/s1600/cdr&#45;01.png');">
-                <div class="tile-body">
-                    <h1>Chainsaw Deathrace</h1>
-                    <p class="tile-date">Completed <time>10/28/2012</time></p>
-                    <p class="tile-genre">Genre: Puzzle</p>
-                </div>
-            </a>
-        </div>
-    </div>
+                <a href="#the-last-light" class="content-tile" style="background-image: url('https://img.itch.io/aW1hZ2UvNjQ3NTcvMjkyNzEzLmpwZw==/347x500/Hnzu%2By.jpg');">
+                    <div class="tile-body">
+                        <span class="title">The Last Light</span>
+                        <p class="tile-date">Completed <time datetime="2016-04-25">04/25/2016</time></p>
+                        <p class="tile-genre">Genre: Horror</p>
+                    </div>
+                </a>
+            </div>
+            <h1>Game Projects</h1>
+            <div class="soft-flex">
+                <a href="#core-breaker" class="content-tile" style="background-image: url('https://2.bp.blogspot.com/-fBIOWR3HTm0/Vy1D9cinBDI/AAAAAAAAB9M/eBddEWXiCxknPMxfTVCPIqA4jc_2xRp4wCLcB/s640/Screenshot-2016-05-06-21%253A23%253A44.png');">
+                    <div class="tile-body">
+                        <span class="title">Core Breaker</span>
+                        <p class="tile-date">Completed <time datetime="2016-05-06">05/06/2016</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#cloudy-climb" class="content-tile" style="background-image: url('img/cloudy.png');">
+                    <div class="tile-body">
+                        <span class="title">Cloudy Climb</span>
+                        <p class="tile-date">Completed <time datetime="2015-07-19">07/19/2015</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#amaze" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/-rkTjCqFaNlg/UwuKju0of8I/AAAAAAAABcA/cXT6FUanhaM/s1600/Screenshot+from+2014-02-23+20:20:02.png');">
+                    <div class="tile-body">
+                        <span class="title">AMAZE</span>
+                        <p class="tile-date">Completed <time datetime="2014-04-25">04/25/2014</time></p>
+                        <p class="tile-genre">Genre: Puzzle</p>
+                    </div>
+                </a>
+                <a href="#space-douchebag" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/-Unl2f8g7VVo/Uq9ZvMrsSXI/AAAAAAAABX8/_gpAr4Zig3k/s1600/SPDC.png');">
+                    <div class="tile-body">
+                        <span class="title">Space Douchebag</span>
+                        <p class="tile-date">Completed <time datetime="2013-12-13">12/13/2013</time></p>
+                        <p class="tile-genre">Genre: Shmup</p>
+                    </div>
+                </a>
+            </div>
+            <h1>Game Jam Entries</h1>
+            <div class="soft-flex">
+                <a href="#growgue" class="content-tile" style="background-image: url('img/growgue-19.png');">
+                    <div class="tile-body">
+                        <span class="title">Growgue</span>
+                        <p class="tile-date">Completed <time datetime="2016-03-04">03/14/2016</time></p>
+                        <p class="tile-genre">Genre: Roguelike</p>
+                    </div>
+                </a>
+                <a href="#to-the-west" class="content-tile" style="background-image: url('img/ttw.png');">
+                    <div class="tile-body">
+                        <span class="title">To the West</span>
+                        <p class="tile-date">Completed <time datetime="2015-03-14">03/14/2015</time></p>
+                        <p class="tile-genre">Genre: Roguelike</p>
+                    </div>
+                </a>
+                <a href="#day-of-the-hotdog" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/&#45;v5T6yooA_DQ/U9RcWWJun_I/AAAAAAAABiw/7lKy9dIymmY/s1600/title.png');">
+                    <div class="tile-body">
+                        <span class="title">Day of the Hotdog</span>
+                        <p class="tile-date">Completed <time datetime="2014-07-27">07/27/2014</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#something-something-office-rampage" class="content-tile" style="background-image: url('http://3.bp.blogspot.com/&#45;eZjHOGb9vtE/UyNQ4YwNt8I/AAAAAAAABdI/UIYohOYUmWY/s1600/Screenshot+from+2014&#45;03&#45;14+13:36:04.png');">
+                    <div class="tile-body">
+                        <span class="title">Something Something Office&#8230;</span>
+                        <p class="tile-date">Completed <time datetime="2014-03-14">03/14/2014</time></p>
+                        <p class="tile-genre">Genre: Roguelike</p>
+                    </div>
+                </a>
+                <a href="#doomsday-darren-goes-fishing" class="content-tile" style="background-image: url('http://3.bp.blogspot.com/&#45;OaykC8wCXn0/UaJHM5Duf0I/AAAAAAAAA_M/sCRNW3F8AQM/s1600/Screenshot+from+2013&#45;05&#45;26+13%253A29%253A52.png');">
+                    <div class="tile-body">
+                        <span class="title">Doomsday Darren Goes Fishing</span>
+                        <p class="tile-date">Completed <time datetime="2013-05-26">05/26/2013</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#diamond-rush" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/&#45;Glu&#45;92r_2DA/UQaFFEZu7QI/AAAAAAAAAwM/7anFxf50fy0/s1600/Title.png');">
+                    <div class="tile-body">
+                        <span class="title">Diamond Rush</span>
+                        <p class="tile-date">Completed <time datetime="2013-01-27">01/27/2013</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#a-wheelie-good-time" class="content-tile" style="background-image: url('http://4.bp.blogspot.com/&#45;KoviXycpxDc/UM5NbA3DoOI/AAAAAAAAAkw/&#45;quB&#45;QlpM5E/s1600/Screenshot+from+2012&#45;12&#45;16+17%253A37%253A12.png');">
+                    <div class="tile-body">
+                        <span class="title">A Wheelie Good Time</span>
+                        <p class="tile-date">Completed <time datetime="2012-12-16">12/16/2012</time></p>
+                        <p class="tile-genre">Genre: Action</p>
+                    </div>
+                </a>
+                <a href="#chainsaw-deathrace" class="content-tile" style="background-image: url('http://2.bp.blogspot.com/&#45;gRa9zl9twg8/UI11Z&#45;k&#45;&#45;3I/AAAAAAAAAdU/rJliVk4jTwA/s1600/cdr&#45;01.png');">
+                    <div class="tile-body">
+                        <span class="title">Chainsaw Deathrace</span>
+                        <p class="tile-date">Completed <time datetime="2012-10-28">10/28/2012</time></p>
+                        <p class="tile-genre">Genre: Puzzle</p>
+                    </div>
+                </a>
+            </div>
 
-    <!-- POPUP SECTION -->
-    <!--<a href="#" onclick="closePopup()" class="darkener" id="duke-spook" onclick="closePopup();"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="img/software-default.svg"/></div>
-            <section class="popup-text">
-                <h1>Duke Spookem 3D</h1>
-                <p>A refreshingly old-school fast-paced FPS featuring the wisecracking wizard exterminator, Duke Spookem.</p>
-            </section>
-        </div>
-    </div>-->
-    <a href="#" onclick="closePopup()" class="darkener" id="the-last-light"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="https://img.itch.io/aW1hZ2UvNjQ3NTcvMjkyNzEzLmpwZw==/347x500/Hnzu%2By.jpg"/></div>
-            <section class="popup-text">
-                <h1>The Last Light</h1>
-                <p>An ordinary day on the subway to pick up your brother, Lucas, has turned into a living nightmare. A mysterious power outage has trapped you underground, and you soon discover you are being hunted in the dark.</p>
-                <p>Last Light is a first-person horror game for the PC where you play as Sophie, a high school student, who is desperately trying to reach her brother. Your only hope for survival is your flashlight and other light sources you find along the way. Good luck, you'll need it.</p>
-                <h2>Contributions</h2>
-                <ul>
-                    <li>Monster visuals and AI</li>
-                    <li>Light detection system</li>
-                </ul>
-                <h2>Download the Game</h2>
-                <iframe frameborder="0" height="167" src="https://itch.io/embed/64757" width="552"></iframe>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="core-breaker"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="https://2.bp.blogspot.com/-fBIOWR3HTm0/Vy1D9cinBDI/AAAAAAAAB9M/eBddEWXiCxknPMxfTVCPIqA4jc_2xRp4wCLcB/s640/Screenshot-2016-05-06-21%253A23%253A44.png"/></div>
-            <section class="popup-text">
-                <h1>Core Breaker</h1>
-                <p>A simple twin-stick shooter developed for my Console Programming class. Core Breaker was my original test game for dfgame, and was developed for both desktop and web play. The goal of the game is simply to destroy enemy ships that appear, and a progress tracker at the top of the screen displays how many kills you've achieved.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>WASD: Move</li>
-                    <li>Arrow Keys: Fire</li>
-                    <li>E: Use bomb</li>
-                </ul>
-                <h2>Play the Game</h2>
-                <a href="game.html">HTML5 Version</a> (Requires a modern web browser. Google Chrome is recommended)
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="cloudy-climb"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="img/cloudy.png"/></div>
-            <section class="popup-text">
-                <h1>Cloudy Climb</h1>
-                <p>A minigame created to test DFEngine's capabilities. DFEngine is no longer in development, but the game lives on. The aim of the game is to bounce off of clouds to get as high as possible. The player can wrap around the screen to reach far-away clouds.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>Spacebar: Start the game</li>
-                    <li>W: Jump (only needed to begin)</li>
-                    <li>A/D: Move left/right</li>
-                    <li>R: Restart the game</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.co.nz/#!YggQTBrJ!V4NSgv6g8CBaap7VvDU74NzLVMrbSa2Nv5bfRyKdBy8">Windows Binary</a></li>
-                    <li><a href="https://mega.co.nz/#!stIgCIQY!03ZTQ8l7pVPLRmOHbvVhNeRjLTuPwe-E1uWx7emptC8">Linux Binary</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="amaze"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://1.bp.blogspot.com/-rkTjCqFaNlg/UwuKju0of8I/AAAAAAAABcA/cXT6FUanhaM/s1600/Screenshot+from+2014-02-23+20:20:02.png"/></div>
-            <section class="popup-text">
-                <h1>AMAZE</h1>
-                <p>A simple little puzzle game, inspired in part by games like Chip's Challenge. The object of the game is to clear each of the four zones, then escape the final zone. Each zone has a different theme, and new mechanics and puzzles are introduced throughout the game. There are 35 levels in total, ranging from simple to fiendishly difficult.</p>
-                <p>The game was first publicly showcased at the Green Mountain Games Festival, where it was fairly well received. The final game had a lackluster release, however, due to naive design choices made early in development. Just for fun, here's an example: The level loader has no support for prefabs, so <b>all objects had to be fully defined from scratch every time I used them</b>. Even a simple improvement like making coins sparkle when you pick them up would've been a nightmarish task of herculean proportions, even with the excessive use of scripts and macros.</p>
-                <p>Needless to say, I took those lessons to heart.</p>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.co.nz/#!5oZznKKA!gbfoT317r2kA1vvjUAlNENrZgopEBkMsQZ62Qglgvn4">Windows Binary</a></li>
-                    <li><a href="https://mega.co.nz/#!ltBjBYBB!Vh8hQ8K5PRAK34tMtmJFPE_Xb_-BSmuGaiUDHZSVmbs">Linux Binary</a></li>
-                    <li><a href="https://mega.co.nz/#!w8gWkJ5C!oLgZoRPr2i-eJUJWYXozwB8QKtTaJl96cTvodfOEr8A">Source Code</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="space-douchebag"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;Unl2f8g7VVo/Uq9ZvMrsSXI/AAAAAAAABX8/_gpAr4Zig3k/s1600/SPDC.png"/></div>
-            <section class="popup-text">
-                <h1>Space Douchebag</h1>
-                <p>You are Space Douchebag, the greatest douchebag in the universe. When your swag is stolen by aliens, it's up to you to exact your vengeance!</p>
-                <p>This game was made for my Graphics I class during my Sophomore year of college. It started as a generic space shooter, becoming Space Douchebag when I couldn't think of a good reason to have my protagonist fly around shooting aliens. From there, I came up with the concept of making ship's hitbox a manifestation of Space Douchebag's ego, which shrinks when shot. The game was intended to be much longer, but content was cut due to time constraints. It's still fun, though, and I think it's actually one of the better entries in my collection. I plan to eventually revisit it and produce a remake.</p>
-                <p>My friend and colleague, <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, composed a wonderful original soundtrack for the game. I recall him mentioning that another artist contributed to the first boss theme, Earth Mover, but I don't know who it is so I am unable to properly credit them. It's also possible that I'm misremembering things and they never existed.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>Enter: Begin game</li>
-                    <li>Arrow Keys: Move</li>
-                    <li>Z: Fire</li>
-                    <li>X: Toggle Douchebag Power</li>
-                    <li>C: Enter Focus Mode</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.co.nz/#!Zt5TxB6a!UjcyZ3phPu11PxREZgTquHx5zS0DTX0zIWf2BGWTgt8">Windows Binary</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="growgue"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="img/growgue-19.png"/></div>
-            <section class="popup-text">
-                <h1>Growgue</h1>
-                <p>@ Symbol, a brave young farmer, was out for a stroll on his farm when his cat Cuddles ran down into the gaping staircase to the deadly Caves of Consternation! @ Symbol had been meaning to patch that up for a while, but hadn't gotten around to it yet. Don't judge.<br/><b>Will you help @ Symbol retrieve his cat, Cuddles?</b><br/>Made for 7DRL 2016.</p>
-                <p>Growgue is a roguelike with a unique farming mechanic. Patches of fertile soil can be found throughout the game, and once tilled they can have seeds planted in them. This was intended to be the player's main source of food, items, and utility abilities (such as planting traps and vines that could take you to other levels). However, a deadly combination of Business, Laziness, and Bugginess kept this game from ever reaching its full potential. It's technically complete, but pretty confusing and half-baked.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>Numpad: Move, navigate menus</li>
-                    <li>Spacebar: Select menu items</li>
-                    <li>Further controls are listed in-game</li>
-                </ul>
-                <h2>Source Code</h2>
-                <a href="https://github.com/Df458/Growgue">Linux Source Code</a> (Should work on windows, in theory, but I haven't tested any windows builds)
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="to-the-west"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="img/ttw.png"/></div>
-            <section class="popup-text">
-                <h1>To the West</h1>
-                <p>The foul warlock Mochus has stolen the Band of the Stars, bringing it to his fortress deep in the western mountains. Journey to the Western lands, find the band, and slay this dark warlock once and for all!<br/>Made for 7DRL 2015.</p>
-                <p>For this game, I decided to try something a bit different: The map is a giant line, going from the point where you start in the east to the final boss far to the west. The map will not scroll up or down, and you have little reason to travel to the right. Instead, you spend most of the game going to the left and dealing with whatever you find.</p>
-                <p>The game featured a number of really cool features during development, such as a faction system that caused NPC infighting and allied NPCs. However, many features had to be scrapped due to a number of memory-related errors. I would've tried to fix them, but since this was a game jam entry I didn't have enough time. The game itself still works, however</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>hjkl: Navigate menus</li>
-                    <li>Spacebar/Enter: Select menu items</li>
-                    <li>Further controls are listed in-game</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.co.nz/#!5843gJiK!Ntlg2QG1rkwxOV6DZNFZaiKuOuIzW_MsHCnttoQ-Y-k">Windows Binary</a></li>
-                    <li><a href="https://github.com/Df458/To-the-West">Source Code</a> (Windows/Linux)</li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="day-of-the-hotdog"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://1.bp.blogspot.com/-v5T6yooA_DQ/U9RcWWJun_I/AAAAAAAABiw/7lKy9dIymmY/s1600/title.png"/></div>
-            <section class="popup-text">
-                <h1>Day of the Hotdog</h1>
-                <p>The Hotgod has been awakened, and he has begun to wreak his baleful and meaty vengeance upon the planet! However, he will let you live-as long as you can amuse him by grilling meat on the barbecue. How hard could it possibly be?<br/>Made for the <a href="http://itch.io/jam/summer-jam">Summer Game Jam</a>.</p>
-                <p>One of the few games ever made using DFEngine, Day of the Hotdog was, in fact, built entirely off of a bad pun. DFEngine was quite limited at the time that I made it, so I took extra care when coming up with game ideas. It had to be a game without actual levels, in 2D, with few features besides a physics engine. As a result, bouncing hotdogs on a barbeque seemed like a pretty obvious summer mechanic. And really, once you're there how could you <b>not</b> add a mechanic centered around knocking bald eagles out of the sky, then catching and grilling them on your barbeque? It's the American way!</p>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="http://df458.itch.io/day-of-the-hotdog">Itch (Windows/Linux Binaries)</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="something-something-office-rampage"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://2.bp.blogspot.com/&#45;eZjHOGb9vtE/UyNQ4YwNt8I/AAAAAAAABdI/UIYohOYUmWY/s1600/Screenshot+from+2014&#45;03&#45;14+13:36:04.png"/></div>
-            <section class="popup-text">
-                <h1>Something Something Office Rampage</h1>
-                <p>You've just been downsized by Ivil Incorporated, <b>a completely legitimate and not secretly performing dark and twisted scientific experiments in hidden laboratories deep below the earth business</b>, and you must go on a murderous rampage that involves painting the walls with blood (a feature missing from far too many roguelikes) and stealing office supplies.<br/>Made for 7DRL 2014.</p>
-                <p>Something Something Office Rampage was my first 7DRL entry, and also my first Roguelike. As a result, I didn't really take a lot of risks, unlike every other roguelike that I've made since then. When thinking up of a setting, my thought process was something along the lines of: What if Dilbert lost his mind one day and went on a rampage? Wait, office workers are still too boring of an enemy. &#8230;But what if Dilbert was working for the Umbrella Corporation and had no idea?</p>
-                <p>From that jumbled mess arose a decent little hack'n'slash roguelike. If I had to charge SSOR with a crime, it would be being too long and repetitive. It as good ideas, and it's entertaining, but it wears out its welcome by stretching the content out too much. I think at the time I expected most 7DRL entries to be quite long, so I tried to pad the game out by making the player traverse around 45 floors when 10-20 would've been enough.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>Spacebar: Advance text</li>
-                    <li>?: Show help</li>
-                    <li>Further controls are listed in-game</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.nz/#!FpxjwQ5D!xzrRBo0dvDJ2J1aDc65vRY31qbXyw8nhFvZrpHKYCNY">Binaries and Source Code (Windows/Linux)</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="doomsday-darren-goes-fishing"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://2.bp.blogspot.com/&#45;OaykC8wCXn0/UaJHM5Duf0I/AAAAAAAAA_M/sCRNW3F8AQM/s1600/Screenshot+from+2013&#45;05&#45;26+13%253A29%253A52.png"/></div>
-            <section class="popup-text">
-                <h1>Doomsday Darren Goes Fishing</h1>
-                <p>Fire a rocket-powered, remote controlled claw out to sea, and grab fish to sell! Buy upgrades like more fuel to go farther out, or a bigger claw to catch bigger fish! The ultimate goal is to catch Big Red, a huge legendary whale with rubies growing out of its back.<br/>Made for Fishing Game Jam 2013.</p>
-                <p>This project was never ported to Windows, even though I had every intention of doing so. It was my first time using CMake as my build system, and due to issues getting it to compile my work on Windows I quit in disgust. Despite the fact that the CMake issues were caused by my inexperience, it still turned out to be a great decision. Not only did I become really good at writing makefiles by hand (and by extension, deciphering giant arcane blocks of code), this also eventually led to my adoption of the <a href="http://mesonbuild.com/">Meson build system</a>, which is, in my humble opinion, far better than CMake in every respect. All's well that ends well, right?</p>
-                <p>Another interesting thing about this game is the recurrence of the "protagonist" of A Wheelie Good Time, Doomsday Darren. I was going to try and fit this character into my games periodically, but as of now (September 2016) he's yet to make a return. Like many of my games, this game suffers from being too long for its own good. Because the content of the game is spread too thinly, it loses its appeal long before you actually complete it.</p>
-                <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
-                <h2>Game Instructions</h2>
-                <ul>
-                    <li>Move your claw with the mouse.</li>
-                    <li>Run into creatures to collect them.</li>
-                    <li>After getting the shrink ray, click and hold to fire it.</li>
-                    <li>The shrink ray is for submerged creatures(like sharks and whales). Just hold it over them, then collect them like any other creature.</li>
-                    <li>Press Escape at any time to quit.</li>
-                    <li>With the money you earn from catches, you can make upgrades after each run. Try and catch Big Red!</li>
-                </ul>
+            <!-- POPUP SECTION -->
+            <!--<a href="#" onclick="closePopup()" class="darkener" id="duke-spook" onclick="closePopup();"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="img/software-default.svg"/></div>
+                    <section class="popup-text">
+                        <h1>Duke Spookem 3D</h1>
+                        <p>A refreshingly old-school fast-paced FPS featuring the wisecracking wizard exterminator, Duke Spookem.</p>
+                    </section>
+                </div>
+            </div>-->
+            <a href="#" onclick="closePopup()" class="darkener" id="the-last-light"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="https://img.itch.io/aW1hZ2UvNjQ3NTcvMjkyNzEzLmpwZw==/347x500/Hnzu%2By.jpg" alt="A screenshot of The Last Light"/></div>
+                    <section class="popup-text">
+                        <h1>The Last Light</h1>
+                        <p>An ordinary day on the subway to pick up your brother, Lucas, has turned into a living nightmare. A mysterious power outage has trapped you underground, and you soon discover you are being hunted in the dark.</p>
+                        <p>Last Light is a first-person horror game for the PC where you play as Sophie, a high school student, who is desperately trying to reach her brother. Your only hope for survival is your flashlight and other light sources you find along the way. Good luck, you'll need it.</p>
+                        <h2>Contributions</h2>
+                        <ul>
+                            <li>Monster visuals and AI</li>
+                            <li>Light detection system</li>
+                        </ul>
+                        <h2>Download the Game</h2>
+                        <iframe frameborder="0" height="167" src="https://itch.io/embed/64757" width="552"></iframe>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="core-breaker"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="https://2.bp.blogspot.com/-fBIOWR3HTm0/Vy1D9cinBDI/AAAAAAAAB9M/eBddEWXiCxknPMxfTVCPIqA4jc_2xRp4wCLcB/s640/Screenshot-2016-05-06-21%253A23%253A44.png" alt="A screenshot of Core Breaker"/></div>
+                    <section class="popup-text">
+                        <h1>Core Breaker</h1>
+                        <p>A simple twin-stick shooter developed for my Console Programming class. Core Breaker was my original test game for dfgame, and was developed for both desktop and web play. The goal of the game is simply to destroy enemy ships that appear, and a progress tracker at the top of the screen displays how many kills you've achieved.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>WASD: Move</li>
+                            <li>Arrow Keys: Fire</li>
+                            <li>E: Use bomb</li>
+                        </ul>
+                        <h2>Play the Game</h2>
+                        <a href="game.html">HTML5 Version</a> (Requires a modern web browser. Google Chrome is recommended)
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="cloudy-climb"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="img/cloudy.png" alt="A screenshot of Cloudy Climb"/></div>
+                    <section class="popup-text">
+                        <h1>Cloudy Climb</h1>
+                        <p>A minigame created to test DFEngine's capabilities. DFEngine is no longer in development, but the game lives on. The aim of the game is to bounce off of clouds to get as high as possible. The player can wrap around the screen to reach far-away clouds.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>Spacebar: Start the game</li>
+                            <li>W: Jump (only needed to begin)</li>
+                            <li>A/D: Move left/right</li>
+                            <li>R: Restart the game</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.co.nz/#!YggQTBrJ!V4NSgv6g8CBaap7VvDU74NzLVMrbSa2Nv5bfRyKdBy8">Windows Binary</a></li>
+                            <li><a href="https://mega.co.nz/#!stIgCIQY!03ZTQ8l7pVPLRmOHbvVhNeRjLTuPwe-E1uWx7emptC8">Linux Binary</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="amaze"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://1.bp.blogspot.com/-rkTjCqFaNlg/UwuKju0of8I/AAAAAAAABcA/cXT6FUanhaM/s1600/Screenshot+from+2014-02-23+20:20:02.png" alt="A screenshot of AMAZE"/></div>
+                    <section class="popup-text">
+                        <h1>AMAZE</h1>
+                        <p>A simple little puzzle game, inspired in part by games like Chip's Challenge. The object of the game is to clear each of the four zones, then escape the final zone. Each zone has a different theme, and new mechanics and puzzles are introduced throughout the game. There are 35 levels in total, ranging from simple to fiendishly difficult.</p>
+                        <p>The game was first publicly showcased at the Green Mountain Games Festival, where it was fairly well received. The final game had a lackluster release, however, due to naive design choices made early in development. Just for fun, here's an example: The level loader has no support for prefabs, so <b>all objects had to be fully defined from scratch every time I used them</b>. Even a simple improvement like making coins sparkle when you pick them up would've been a nightmarish task of herculean proportions, even with the excessive use of scripts and macros.</p>
+                        <p>Needless to say, I took those lessons to heart.</p>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.co.nz/#!5oZznKKA!gbfoT317r2kA1vvjUAlNENrZgopEBkMsQZ62Qglgvn4">Windows Binary</a></li>
+                            <li><a href="https://mega.co.nz/#!ltBjBYBB!Vh8hQ8K5PRAK34tMtmJFPE_Xb_-BSmuGaiUDHZSVmbs">Linux Binary</a></li>
+                            <li><a href="https://mega.co.nz/#!w8gWkJ5C!oLgZoRPr2i-eJUJWYXozwB8QKtTaJl96cTvodfOEr8A">Source Code</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="space-douchebag"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;Unl2f8g7VVo/Uq9ZvMrsSXI/AAAAAAAABX8/_gpAr4Zig3k/s1600/SPDC.png" alt="A screenshot of Space Douchebag"/></div>
+                    <section class="popup-text">
+                        <h1>Space Douchebag</h1>
+                        <p>You are Space Douchebag, the greatest douchebag in the universe. When your swag is stolen by aliens, it's up to you to exact your vengeance!</p>
+                        <p>This game was made for my Graphics I class during my Sophomore year of college. It started as a generic space shooter, becoming Space Douchebag when I couldn't think of a good reason to have my protagonist fly around shooting aliens. From there, I came up with the concept of making ship's hitbox a manifestation of Space Douchebag's ego, which shrinks when shot. The game was intended to be much longer, but content was cut due to time constraints. It's still fun, though, and I think it's actually one of the better entries in my collection. I plan to eventually revisit it and produce a remake.</p>
+                        <p>My friend and colleague, <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, composed a wonderful original soundtrack for the game. I recall him mentioning that another artist contributed to the first boss theme, Earth Mover, but I don't know who it is so I am unable to properly credit them. It's also possible that I'm misremembering things and they never existed.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>Enter: Begin game</li>
+                            <li>Arrow Keys: Move</li>
+                            <li>Z: Fire</li>
+                            <li>X: Toggle Douchebag Power</li>
+                            <li>C: Enter Focus Mode</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.co.nz/#!Zt5TxB6a!UjcyZ3phPu11PxREZgTquHx5zS0DTX0zIWf2BGWTgt8">Windows Binary</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="growgue"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="img/growgue-19.png" alt="A screenshot of Growgue"/></div>
+                    <section class="popup-text">
+                        <h1>Growgue</h1>
+                        <p>@ Symbol, a brave young farmer, was out for a stroll on his farm when his cat Cuddles ran down into the gaping staircase to the deadly Caves of Consternation! @ Symbol had been meaning to patch that up for a while, but hadn't gotten around to it yet. Don't judge.<br/><b>Will you help @ Symbol retrieve his cat, Cuddles?</b><br/>Made for 7DRL 2016.</p>
+                        <p>Growgue is a roguelike with a unique farming mechanic. Patches of fertile soil can be found throughout the game, and once tilled they can have seeds planted in them. This was intended to be the player's main source of food, items, and utility abilities (such as planting traps and vines that could take you to other levels). However, a deadly combination of Business, Laziness, and Bugginess kept this game from ever reaching its full potential. It's technically complete, but pretty confusing and half-baked.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>Numpad: Move, navigate menus</li>
+                            <li>Spacebar: Select menu items</li>
+                            <li>Further controls are listed in-game</li>
+                        </ul>
+                        <h2>Source Code</h2>
+                        <a href="https://github.com/Df458/Growgue">Linux Source Code</a> (Should work on windows, in theory, but I haven't tested any windows builds)
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="to-the-west"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="img/ttw.png" alt="A screenshot of To the West"/></div>
+                    <section class="popup-text">
+                        <h1>To the West</h1>
+                        <p>The foul warlock Mochus has stolen the Band of the Stars, bringing it to his fortress deep in the western mountains. Journey to the Western lands, find the band, and slay this dark warlock once and for all!<br/>Made for 7DRL 2015.</p>
+                        <p>For this game, I decided to try something a bit different: The map is a giant line, going from the point where you start in the east to the final boss far to the west. The map will not scroll up or down, and you have little reason to travel to the right. Instead, you spend most of the game going to the left and dealing with whatever you find.</p>
+                        <p>The game featured a number of really cool features during development, such as a faction system that caused NPC infighting and allied NPCs. However, many features had to be scrapped due to a number of memory-related errors. I would've tried to fix them, but since this was a game jam entry I didn't have enough time. The game itself still works, however</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>hjkl: Navigate menus</li>
+                            <li>Spacebar/Enter: Select menu items</li>
+                            <li>Further controls are listed in-game</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.co.nz/#!5843gJiK!Ntlg2QG1rkwxOV6DZNFZaiKuOuIzW_MsHCnttoQ-Y-k">Windows Binary</a></li>
+                            <li><a href="https://github.com/Df458/To-the-West">Source Code</a> (Windows/Linux)</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="day-of-the-hotdog"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://1.bp.blogspot.com/-v5T6yooA_DQ/U9RcWWJun_I/AAAAAAAABiw/7lKy9dIymmY/s1600/title.png" alt="A screenshot of Day of the Hotdog"/></div>
+                    <section class="popup-text">
+                        <h1>Day of the Hotdog</h1>
+                        <p>The Hotgod has been awakened, and he has begun to wreak his baleful and meaty vengeance upon the planet! However, he will let you live-as long as you can amuse him by grilling meat on the barbecue. How hard could it possibly be?<br/>Made for the <a href="http://itch.io/jam/summer-jam">Summer Game Jam</a>.</p>
+                        <p>One of the few games ever made using DFEngine, Day of the Hotdog was, in fact, built entirely off of a bad pun. DFEngine was quite limited at the time that I made it, so I took extra care when coming up with game ideas. It had to be a game without actual levels, in 2D, with few features besides a physics engine. As a result, bouncing hotdogs on a barbeque seemed like a pretty obvious summer mechanic. And really, once you're there how could you <b>not</b> add a mechanic centered around knocking bald eagles out of the sky, then catching and grilling them on your barbeque? It's the American way!</p>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="http://df458.itch.io/day-of-the-hotdog">Itch (Windows/Linux Binaries)</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="something-something-office-rampage"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://2.bp.blogspot.com/&#45;eZjHOGb9vtE/UyNQ4YwNt8I/AAAAAAAABdI/UIYohOYUmWY/s1600/Screenshot+from+2014&#45;03&#45;14+13:36:04.png" alt="A screenshot of Something Something Office Rampage"/></div>
+                    <section class="popup-text">
+                        <h1>Something Something Office Rampage</h1>
+                        <p>You've just been downsized by Ivil Incorporated, <b>a completely legitimate and not secretly performing dark and twisted scientific experiments in hidden laboratories deep below the earth business</b>, and you must go on a murderous rampage that involves painting the walls with blood (a feature missing from far too many roguelikes) and stealing office supplies.<br/>Made for 7DRL 2014.</p>
+                        <p>Something Something Office Rampage was my first 7DRL entry, and also my first Roguelike. As a result, I didn't really take a lot of risks, unlike every other roguelike that I've made since then. When thinking up of a setting, my thought process was something along the lines of: What if Dilbert lost his mind one day and went on a rampage? Wait, office workers are still too boring of an enemy. &#8230;But what if Dilbert was working for the Umbrella Corporation and had no idea?</p>
+                        <p>From that jumbled mess arose a decent little hack'n'slash roguelike. If I had to charge SSOR with a crime, it would be being too long and repetitive. It as good ideas, and it's entertaining, but it wears out its welcome by stretching the content out too much. I think at the time I expected most 7DRL entries to be quite long, so I tried to pad the game out by making the player traverse around 45 floors when 10-20 would've been enough.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>Spacebar: Advance text</li>
+                            <li>?: Show help</li>
+                            <li>Further controls are listed in-game</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.nz/#!FpxjwQ5D!xzrRBo0dvDJ2J1aDc65vRY31qbXyw8nhFvZrpHKYCNY">Binaries and Source Code (Windows/Linux)</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="doomsday-darren-goes-fishing"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://2.bp.blogspot.com/&#45;OaykC8wCXn0/UaJHM5Duf0I/AAAAAAAAA_M/sCRNW3F8AQM/s1600/Screenshot+from+2013&#45;05&#45;26+13%253A29%253A52.png" alt="A screenshot of Doomsday Darren Goes Fishing"/></div>
+                    <section class="popup-text">
+                        <h1>Doomsday Darren Goes Fishing</h1>
+                        <p>Fire a rocket-powered, remote controlled claw out to sea, and grab fish to sell! Buy upgrades like more fuel to go farther out, or a bigger claw to catch bigger fish! The ultimate goal is to catch Big Red, a huge legendary whale with rubies growing out of its back.<br/>Made for Fishing Game Jam 2013.</p>
+                        <p>This project was never ported to Windows, even though I had every intention of doing so. It was my first time using CMake as my build system, and due to issues getting it to compile my work on Windows I quit in disgust. Despite the fact that the CMake issues were caused by my inexperience, it still turned out to be a great decision. Not only did I become really good at writing makefiles by hand (and by extension, deciphering giant arcane blocks of code), this also eventually led to my adoption of the <a href="http://mesonbuild.com/">Meson build system</a>, which is, in my humble opinion, far better than CMake in every respect. All's well that ends well, right?</p>
+                        <p>Another interesting thing about this game is the recurrence of the "protagonist" of A Wheelie Good Time, Doomsday Darren. I was going to try and fit this character into my games periodically, but as of now (September 2016) he's yet to make a return. Like many of my games, this game suffers from being too long for its own good. Because the content of the game is spread too thinly, it loses its appeal long before you actually complete it.</p>
+                        <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
+                        <h2>Game Instructions</h2>
+                        <ul>
+                            <li>Move your claw with the mouse.</li>
+                            <li>Run into creatures to collect them.</li>
+                            <li>After getting the shrink ray, click and hold to fire it.</li>
+                            <li>The shrink ray is for submerged creatures(like sharks and whales). Just hold it over them, then collect them like any other creature.</li>
+                            <li>Press Escape at any time to quit.</li>
+                            <li>With the money you earn from catches, you can make upgrades after each run. Try and catch Big Red!</li>
+                        </ul>
 
-                <h3>Enemies:</h3>
-                <ul>
-                    <li>Seagull: 10 points, and +1 to multiplier</li>
-                    <li>Fish: 50 points</li>
-                    <li>Puffer Fish: 150 points</li>
-                    <li>Eel: 500 points</li>
-                    <li>Shark: 2,500 points</li>
-                    <li>Whale: 15,000 points</li>
-                    <li>Chest Filled with Spanish Doubloons: 500,000 points</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="https://mega.co.nz/#!FZ0HmSrK!PhtG2wo8XAmb0GszR5sKj3u0UvVVKr55tiyrSSdbAOc">Linux Download</a> (Source+Binary)</li>
-                    <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5880111424975805105">Development Album</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="diamond-rush"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;Glu&#45;92r_2DA/UQaFFEZu7QI/AAAAAAAAAwM/7anFxf50fy0/s1600/Title.png"/></div>
-            <section class="popup-text">
-                <h1>Diamond Rush</h1>
-                <p>You are the mighty Diamond Titan, placed deep within a cave to ward off would-be heroes who might seek the Macguffin that you guard. However, you forgot one thing: The only thing heroes love more than plot points is loot! Hop for your life, Diamond Titan!<br/>Created for Global Game Jam 2013.</p>
-                <p>I think this is one of my better game jam entries. I recall that part of the jam's theme was a heartbeat sound, and I didn't want to make a game with a heart. I figured most people would just put hearts in their games, and that I needed to find a different interpretation of the sound. So, I decided that the sound was the footsteps of something huge hopping and skipping around. Then, I needed a reason to make it hop in the first place, and the story of the Diamond Titan was born.</p>
-                <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
-                <h2>Game Instructions</h2>
-                <p>You direct movement via the orange cursor, which is controlled with the mouse. The Titan will automatically try to jump to it. Be warned, though: You cannot control it while it's in the air. The heroes will damage you if you land on/near them. If you run out of health, it's Game Over.</p>
-                <h3>Score Values</h3>
-                <ul>
-                    <li>Collect purple crystals for 50 points each.</li>
-                    <li>Completing a level will give you 100 points times the level number.</li>
-                    <li>Every point of health remaining when you win give you a 25 point bonus.</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="http://2013.globalgamejam.org/sites/default/files/2013/Create%20Game%202013/download/Documents.zip">Download (Windows/Linux)</a></li>
-                    <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5837530165552912929">Development Album</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" onclick="closePopup()" class="darkener" id="a-wheelie-good-time"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;KoviXycpxDc/UM5NbA3DoOI/AAAAAAAAAkw/&#45;quB&#45;QlpM5E/s1600/Screenshot+from+2012&#45;12&#45;16+17%253A37%253A12.png"/></div>
-            <section class="popup-text">
-                <h1>A Wheelie Good Time</h1>
-                <p>You are a wheelie bad dude. You'd like to go destroy the city, but your doctor told you that you need exercise. That's when you get a cunning plan (because that's how you roll, of course) to destroy and exercise at the same time! What could go wrong?</p>
-                <p>I swear these puns get more stale every year.<br/>The game was originally called Ultramarathon of Doom, which was decent but slightly misleading, so I ended up changing it. After all these years, I honestly don't know how or why I came up with this concept. The jam's theme was "You are the villain", but where did the giant city-crushing wheel come from? It's a mystery.</p>
-                <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>WASD: Move/Jump</li>
-                    <li>Left Click (Hold): Shoot</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="http://www.mediafire.com/?ggthw6c3b9l5ey0">Windows Binary</a></li>
-                    <li><a href="http://www.mediafire.com/?l7bryabgaufo166">Linux Binary</a></li>
-                    <li><a href="http://www.mediafire.com/?e9gn3a2k49b8i81">Source Code</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-    <a href="#" class="darkener" id="chainsaw-deathrace" onclick="closePopup()"></a>
-    <div class="popup">
-        <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
-        <div class="popup-content">
-            <div class="popup-main-image"><img src="http://1.bp.blogspot.com/&#45;gRa9zl9twg8/UI11Z&#45;k&#45;&#45;3I/AAAAAAAAAdU/rJliVk4jTwA/s1600/cdr&#45;01.png"/></div>
-            <section class="popup-text">
-                <h1>Chainsaw Deathrace</h1>
-                <p>Control 3 plucky teenagers as they escape a crazed chainsaw-wielding maniac! There's a catch, though: they've already lost a few limbs.<br/>Created for a game jam at Champlain College.</p>
-                <p>Technically, this is my second game jam entry. Unfortunately, the first game was lost to the sands of time so it's missing from the list. Chainsaw Deathrace came from my desire to make a Halloween-themed game. I wanted to make a game about a generic masked horror movie killer, but the jam's theme was "disability". Naturally, playing as a terrifying masked killer isn't a huge disability on its own, so I turned my attention to the victims: Billy, Sammy, and Fred. I decided to make a horror-movie roguelike about a bunch of already-attacked teenagers, but I was a terrible programmer at the time so I just made a single level by hand. I was working on an actual-roguelike remake of the game, but never finished. I still want to make the game eventually, but it likely won't happen for a very long time.</p>
-                <p>Fun Fact: If you play the game perfectly, by taking the right doors, you will never encounter the Chainsaw Killer.</p>
-                <h2>Controls</h2>
-                <ul>
-                    <li>Arrow Keys: Move</li>
-                    <li>,: Pick up an item</li>
-                    <li>All other actions are taken by clicking on buttons</li>
-                </ul>
-                <h2>Links</h2>
-                <ul>
-                    <li><a href="http://s3.amazonaws.com/bmo_campchamp/submissions/games/000/000/003/original/CDR.zip?1351457601">Windows Binary</a></li>
-                    <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5803800543714975393">Development Album</a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
+                        <h3>Enemies:</h3>
+                        <ul>
+                            <li>Seagull: 10 points, and +1 to multiplier</li>
+                            <li>Fish: 50 points</li>
+                            <li>Puffer Fish: 150 points</li>
+                            <li>Eel: 500 points</li>
+                            <li>Shark: 2,500 points</li>
+                            <li>Whale: 15,000 points</li>
+                            <li>Chest Filled with Spanish Doubloons: 500,000 points</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="https://mega.co.nz/#!FZ0HmSrK!PhtG2wo8XAmb0GszR5sKj3u0UvVVKr55tiyrSSdbAOc">Linux Download</a> (Source+Binary)</li>
+                            <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5880111424975805105">Development Album</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="diamond-rush"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;Glu&#45;92r_2DA/UQaFFEZu7QI/AAAAAAAAAwM/7anFxf50fy0/s1600/Title.png" alt="A screenshot of Diamond Rush"/></div>
+                    <section class="popup-text">
+                        <h1>Diamond Rush</h1>
+                        <p>You are the mighty Diamond Titan, placed deep within a cave to ward off would-be heroes who might seek the Macguffin that you guard. However, you forgot one thing: The only thing heroes love more than plot points is loot! Hop for your life, Diamond Titan!<br/>Created for Global Game Jam 2013.</p>
+                        <p>I think this is one of my better game jam entries. I recall that part of the jam's theme was a heartbeat sound, and I didn't want to make a game with a heart. I figured most people would just put hearts in their games, and that I needed to find a different interpretation of the sound. So, I decided that the sound was the footsteps of something huge hopping and skipping around. Then, I needed a reason to make it hop in the first place, and the story of the Diamond Titan was born.</p>
+                        <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
+                        <h2>Game Instructions</h2>
+                        <p>You direct movement via the orange cursor, which is controlled with the mouse. The Titan will automatically try to jump to it. Be warned, though: You cannot control it while it's in the air. The heroes will damage you if you land on/near them. If you run out of health, it's Game Over.</p>
+                        <h3>Score Values</h3>
+                        <ul>
+                            <li>Collect purple crystals for 50 points each.</li>
+                            <li>Completing a level will give you 100 points times the level number.</li>
+                            <li>Every point of health remaining when you win give you a 25 point bonus.</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="http://2013.globalgamejam.org/sites/default/files/2013/Create%20Game%202013/download/Documents.zip">Download (Windows/Linux)</a></li>
+                            <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5837530165552912929">Development Album</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" onclick="closePopup()" class="darkener" id="a-wheelie-good-time"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://3.bp.blogspot.com/&#45;KoviXycpxDc/UM5NbA3DoOI/AAAAAAAAAkw/&#45;quB&#45;QlpM5E/s1600/Screenshot+from+2012&#45;12&#45;16+17%253A37%253A12.png" alt="A screenshot of A Wheelie Good Time"/></div>
+                    <section class="popup-text">
+                        <h1>A Wheelie Good Time</h1>
+                        <p>You are a wheelie bad dude. You'd like to go destroy the city, but your doctor told you that you need exercise. That's when you get a cunning plan (because that's how you roll, of course) to destroy and exercise at the same time! What could go wrong?</p>
+                        <p>I swear these puns get more stale every year.<br/>The game was originally called Ultramarathon of Doom, which was decent but slightly misleading, so I ended up changing it. After all these years, I honestly don't know how or why I came up with this concept. The jam's theme was "You are the villain", but where did the giant city-crushing wheel come from? It's a mystery.</p>
+                        <p>The game's soundtrack was composed by <a href="https://soundcloud.com/peter-orzell">Peter Orzell</a>, a good friend and colleague of mine.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>WASD: Move/Jump</li>
+                            <li>Left Click (Hold): Shoot</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="http://www.mediafire.com/?ggthw6c3b9l5ey0">Windows Binary</a></li>
+                            <li><a href="http://www.mediafire.com/?l7bryabgaufo166">Linux Binary</a></li>
+                            <li><a href="http://www.mediafire.com/?e9gn3a2k49b8i81">Source Code</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <a href="#" class="darkener" id="chainsaw-deathrace" onclick="closePopup()"></a>
+            <div class="popup">
+                <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+                <div class="popup-content">
+                    <div class="popup-main-image"><img src="http://1.bp.blogspot.com/&#45;gRa9zl9twg8/UI11Z&#45;k&#45;&#45;3I/AAAAAAAAAdU/rJliVk4jTwA/s1600/cdr&#45;01.png" alt="A screenshot of Chainsaw Deathrace"/></div>
+                    <section class="popup-text">
+                        <h1>Chainsaw Deathrace</h1>
+                        <p>Control 3 plucky teenagers as they escape a crazed chainsaw-wielding maniac! There's a catch, though: they've already lost a few limbs.<br/>Created for a game jam at Champlain College.</p>
+                        <p>Technically, this is my second game jam entry. Unfortunately, the first game was lost to the sands of time so it's missing from the list. Chainsaw Deathrace came from my desire to make a Halloween-themed game. I wanted to make a game about a generic masked horror movie killer, but the jam's theme was "disability". Naturally, playing as a terrifying masked killer isn't a huge disability on its own, so I turned my attention to the victims: Billy, Sammy, and Fred. I decided to make a horror-movie roguelike about a bunch of already-attacked teenagers, but I was a terrible programmer at the time so I just made a single level by hand. I was working on an actual-roguelike remake of the game, but never finished. I still want to make the game eventually, but it likely won't happen for a very long time.</p>
+                        <p>Fun Fact: If you play the game perfectly, by taking the right doors, you will never encounter the Chainsaw Killer.</p>
+                        <h2>Controls</h2>
+                        <ul>
+                            <li>Arrow Keys: Move</li>
+                            <li>,: Pick up an item</li>
+                            <li>All other actions are taken by clicking on buttons</li>
+                        </ul>
+                        <h2>Links</h2>
+                        <ul>
+                            <li><a href="http://s3.amazonaws.com/bmo_campchamp/submissions/games/000/000/003/original/CDR.zip?1351457601">Windows Binary</a></li>
+                            <li><a href="https://plus.google.com/photos/116968461735605048131/albums/5803800543714975393">Development Album</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

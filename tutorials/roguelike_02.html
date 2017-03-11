@@ -1,25 +1,28 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <div class="tnav-flex">
             <a href="roguelike_01.html" rel="prev">Previous Part</a>
             <!-- <a href="roguelike_01_5.html" rel="prev">Previous Part</a> -->
@@ -98,8 +101,8 @@
             ...And there you have it!
             You've now written your first curses program.
         </p>
-        <div class="note">
-            <h1>Note - On the subject of prefixes</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - On the subject of prefixes</h4>
             Curses provides some shortcuts to make your life easier by adding prefixes to functions.
             Most output functions support adding an 'mv' to the start of their name, which allows you to specify the position of the output.
             For instance, our "Press any key to continue" up above could be written as 
@@ -111,7 +114,7 @@
             The other main prefix is 'w', which allows you to specify which curses window to draw to.
             I'll be covering that in a later chapter, so don't worry about it for now.
             Lastly, you can also use 'mvw' to specify the position and the window at the same time.
-        </div>
+        </aside>
 
         <h2>The Example App</h2>
         <p>
@@ -122,7 +125,7 @@
         </p>
 
         <h3>Animation</h3>
-        <img class="center-screenshot" src="roguelike_02_01.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_02_01.png" alt="A still screenshot of the animation demo"/>
         <p>
             In my previous attempt at this tutorial series, I incorrectly stated that you couldn't do high-speed motion or animation in curses.
             However, this isn't quite true.
@@ -136,7 +139,7 @@
         </p>
 
         <h3>Colors</h3>
-        <img class="center-screenshot" src="roguelike_02_02.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_02_02.png" alt="A screenshot of the colors demo"/>
         <p>
             The colors demo shows you the number of available colors, and draws the defaults.
             As I mentioned in the last part, the SDL version of PDCurses is limited to 16 colors.
@@ -150,7 +153,7 @@
         </p>
 
         <h3>Styles</h3>
-        <img class="center-screenshot" src="roguelike_02_03.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_02_03.png" alt="A screenshot of the styles demo"/>
         <p>
             For this demo, I took every available curses text attribute and rendered text with it.
             To turn an attribute on/off for drawing, you simply have to use the <b>attron</b>/<b>attroff</b> functions.
@@ -174,7 +177,7 @@
         </p>
 
         <h3>Charmap</h3>
-        <img class="center-screenshot" src="roguelike_02_04.png" alt=""/>
+        <img class="center-screenshot" src="roguelike_02_04.png" alt="A screenshot of the character map demo"/>
         <p>
             The last demo is just a simple character map.
             It doesn't do anything fancy, but it might be useful to use the code to test a custom font.
@@ -194,6 +197,6 @@
             <a href="roguelike_index.html">Index</a>
             <a href="roguelike_03.html" rel="next">Next Part</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>

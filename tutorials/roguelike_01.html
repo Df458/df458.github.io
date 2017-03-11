@@ -1,33 +1,38 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
-        <link rel='icon' href='../img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="popup_close.js"></script>
     <title>Hugues Ross - Tutorials</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="../index.html"><img src="../img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="../about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" id="selected" href="../tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" href="../software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="../games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content tutorial'>
+    <main role="main">
         <div class="tnav-flex">
             <a href="roguelike_intro.html">Previous Part</a>
             <a href="roguelike_index.html">Index</a>
             <a href="roguelike_02.html" rel="next">Next Part</a>
         </div>
         <h1>Let's Make a Roguelike - 1 - Prep Work</h1>
-        When you start any coding project, it's important to choose the tools and libraries that you'll be using and make sure that you understand how they work.
-        To that end, I'm going to give you a quick overview of what I'll be using in this series.
+        <p>
+            When you start any coding project, it's important to choose the tools and libraries that you'll be using and make sure that you understand how they work.
+            To that end, I'm going to give you a quick overview of what I'll be using in this series.
+        </p>
 
         <h2>How Do We Render Our World?</h2>
         In the introduction, I stated that we'd be using text-based graphics.
@@ -67,10 +72,10 @@
         Of course, with ncurses nothing is guaranteed, so you'd need to check the features of the terminal running your game at launch and adjust accordingly.
         PDCurses also allows you to do a few unique things, such as changing the font and the background.
         At the end of the day, you can use either or both and still have a viable project.
-        <div class="note">
-            <h1>Note - Playing With Power</h1>
+        <aside class="note">
+            <h4 class="note-heading">Note - Playing With Power</h4>
             You can find a souped-up version of PDCurses with many new features (including true RGB color support) <a href="http://www.projectpluto.com/win32a.htm">here</a>. I would give it a proper recommendation, but I haven't tried using it myself. If you want to try it, be aware that it only works on Windows so you'll be trading in cross-compatibility in exchange for more graphical features. The page says that the X11 and SDL versions have been improved as well, but I still need to play with them. If I <b>do</b> upgrade in the future, I'll come back and update this part with more details.
-        </div>
+        </aside>
 
         <h2>Considering the Platform</h2>
         Since we're working with a form of output that's not exactly standard as far as games go, I'm going to discuss a few important things about it.
@@ -130,6 +135,6 @@
             <a href="roguelike_index.html">Index</a>
             <a href="roguelike_02.html" rel="next">Next Part</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>

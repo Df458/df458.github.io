@@ -1,41 +1,144 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <link rel='stylesheet' href='main.css'>
-        <link rel='icon' href='img/dflogo.svg' type="image/x-icon">
+        <link rel='icon' href='icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hugues Ross - Software</title>
     </head>
     <body>
-    <div class="main-bar">
-        <a id="main-name" href="index.html"><img src="img/dflogo.svg"/>Hugues Ross</a>
+    <header>
+        <a id="main-name" href="index.html">Hugues Ross</a>
         <div class="main-nav">
-            <a class="nav-entry" href="about.html"><span class="nav-underline">About Me</span></a>
-            <a class="nav-entry" href="http://www.huguesross.net"><span class="nav-underline">Blog</span></a>
-            <a class="nav-entry" href="tutorials.html"><span class="nav-underline">Tutorials</span></a>
-            <a class="nav-entry" id="selected" href="software.html"><span class="nav-underline">Software</span></a>
-            <a class="nav-entry" href="games.html"><span class="nav-underline">Games</span></a>
+            <a class="nav-entry" href="about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry" href="tutorials.html">Tutorials</a>
+            <a class="nav-entry selected" href="software.html">Software</a>
+            <a class="nav-entry" href="games.html">Games</a>
         </div>
-    </div>
+    </header>
     <!-- Main Area -->
-    <div class='page-content'>
-        <h1>Software</h1>
-        Here is where I put all of the software that I release.
-        This page is still under construction, so more content will appear here soon.
+    <main role="main">
+        <h1>Software Projects</h1>
         <div class="soft-flex">
-            <div class="software-entry">
-                <img src="img/software-default.svg"/>
-                <h2>Singularity</h2>
-                <p>Singularity is a GTK-based webfeed aggregator for the desktop. It is written in Vala. Currently, only linux is supported, although I may consider porting the code to target other platforms in the future.</p>
-                <h3>Links</h3>
-                <a href="https://github.com/Df458/Singularity">Github</a>
-            </div>
-            <div class="software-entry">
-                <img src="img/software-default.svg"/>
-                <h2>Sorthelper</h2>
-                <p>Sorthelper is a GTK-based file-sorting utility. It uses efficient as-you-type searching combined with file previews and grouping algorithms to help users rapidly sort their files.</p>
-                <h3>Links</h3>
-                <a href="https://github.com/Df458/Sorthelper">Github</a>
+            <a href="#halberd" class="content-tile" style="background-image: url('img/software-default.svg');">
+                <div class="tile-body">
+                    <span class="title">Halberd</span>
+                    <p class="tile-date">Last Update <time datetime="2016-11-20">11/20/2016</time></p>
+                </div>
+            </a>
+            <a href="#sorthelper" class="content-tile" style="background-image: url('img/software-default.svg');">
+                <div class="tile-body">
+                    <span class="title">Sorthelper</span>
+                    <p class="tile-date">Completed <time datetime="2015-11-14">11/14/2015</time></p>
+                </div>
+            </a>
+            <a href="#singularity" class="content-tile" style="background-image: url('img/software-default.svg');">
+                <div class="tile-body">
+                    <span class="title">Singularity</span>
+                    <p class="tile-date">Completed <time datetime="2013-06-10">06/10/2013</time></p>
+                </div>
+            </a>
+        </div>
+        <h1>Libraries</h1>
+        <div class="soft-flex">
+            <a href="#dfgame" class="content-tile" style="background-image: url('img/software-default.svg');">
+                <div class="tile-body">
+                    <span class="title">DFGame</span>
+                    <p class="tile-date">Last Update <time datetime="2017-03-20">03/20/2017</time></p>
+                </div>
+            </a>
+            <a href="#dflib" class="content-tile" style="background-image: url('img/software-default.svg');">
+                <div class="tile-body">
+                    <span class="title">DFLib</span>
+                    <p class="tile-date">Last Update <time datetime="2016-12-23">12/23/2016</time></p>
+                </div>
+            </a>
+        </div>
+
+
+        <a href="#" onclick="closePopup()" class="darkener" id="halberd"></a>
+        <div class="popup">
+            <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+            <div class="popup-content">
+                <section class="popup-text">
+                    <h1>Halberd</h1>
+                    <p>
+                        Halberd is a work-in-progress RPG engine.
+                        The goal of the project is to create an accessible and free tool to help designers build old-school JRPGs.
+                        In addition to this, Halberd is also being built to support many modern features and effects.
+                    </p>
+                    <p>
+                        Halberd is being built on top of the <a href="#dfgame">DFGame</a> framework, and uses GTK+ for its interface.
+                    </p>
+                    <h2>Links</h2>
+                    <a href="https://github.com/Df458/Halberd">Github</a>
+                </section>
             </div>
         </div>
-    </div>
-    </body>
+        <a href="#" onclick="closePopup()" class="darkener" id="sorthelper"></a>
+        <div class="popup">
+            <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+            <div class="popup-content">
+                <section class="popup-text">
+                    <h1>Sorthelper</h1>
+                    <p>
+                        Sorthelper is a file-sorting utility built with GTK+.
+                        It uses efficient as-you-type searching combined with file previews and grouping algorithms to help users rapidly sort their files.
+                    </p>
+                    <h2>Links</h2>
+                    <a href="https://github.com/Df458/Sorthelper">Github</a>
+                </section>
+            </div>
+        </div>
+        <a href="#" onclick="closePopup()" class="darkener" id="singularity"></a>
+        <div class="popup">
+            <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+            <div class="popup-content">
+                <section class="popup-text">
+                    <h1>Singularity</h1>
+                    <p>
+                        Singularity is a GTK-based webfeed aggregator for the desktop.
+                        Currently only linux is supported, although I may port the code to other platforms in the future.
+                    </p>
+                    <h2>Links</h2>
+                    <a href="https://github.com/Df458/Singularity">Github</a>
+                </section>
+            </div>
+        </div>
+
+
+        <a href="#" onclick="closePopup()" class="darkener" id="dfgame"></a>
+        <div class="popup">
+            <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+            <div class="popup-content">
+                <section class="popup-text">
+                    <h1>DFGame</h1>
+                    <p>
+                        DFGame is a simple game development framework written in C and Vala.
+                        It values simplicity and flexibility over ease of use, giving dedicated programmers a head start when building their game's engine code.
+                    </p>
+                    <h2>Links</h2>
+                    <a href="https://github.com/Df458/DFGame">Github</a>
+                </section>
+            </div>
+        </div>
+        <a href="#" onclick="closePopup()" class="darkener" id="dflib"></a>
+        <div class="popup">
+            <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
+            <div class="popup-content">
+                <section class="popup-text">
+                    <h1>DFLib</h1>
+                    <p>
+                        DFLib is a small Vala-based utility library for GTK+ programs.
+                        It provides a few useful widgets and patterns to help speed up GUI development.
+                    </p>
+                    <h2>Links</h2>
+                    <a href="https://github.com/Df458/DFLib">Github</a>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
 </html>
