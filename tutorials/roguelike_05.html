@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel='stylesheet' href='../main.css'>
+        <link rel='stylesheet' href='../tutorials.css'>
+        <link rel='stylesheet' href='../highlight.css'>
+        <link rel='icon' href='../icon.png' sizes="192x192">
+        <meta name="theme-color" content="#202020">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="popup_close.js"></script>
+    <title>Hugues Ross - Tutorials</title>
+    </head>
+    <body>
+    <header>
+        <a id="main-name" href="../index.html">Hugues Ross</a>
+        <div class="main-nav">
+            <a class="nav-entry" href="../about.html">About</a>
+            <a class="nav-entry" href="http://www.huguesross.net">Blog</a>
+            <a class="nav-entry selected" href="../tutorials.html">Tutorials</a>
+            <a class="nav-entry" href="../software.html">Software</a>
+            <a class="nav-entry" href="../games.html">Games</a>
+        </div>
+    </header>
+    <!-- Main Area -->
+    <main role="main">
+        <div class="tnav-flex">
+            <a href="roguelike_04.html" rel="prev">Previous Part</a>
+            <a href="roguelike_index.html">Index</a>
+            <a href="#" rel="next" class="tnav-spacer" aria-hidden="true">Next Part</a>
+            <!-- <a href="roguelike_06.html" rel="next">Next Part</a> -->
+        </div>
+        <h1>Let's Make a Roguelike - 5 - Example: The Swamp Cave</h1>
+        <p>
+            Last time, we covered some basic procedural generation algorithms.
+            Now, let's see what we can do with these techniques.
+            In the segment below, I'll be demonstrating the design and development of the swamp cave, an area from a nonexistent roguelike.
+        </p>
+
+        <h2>Followup</h2>
+
+        <h3>Improved Drunkard's Walk</h3>
+        <p>
+            Before we begin, let's improve the algorithms from last time.
+            We'll start by making a simple upgrade to the Drunkard's Walk.
+            Our previous Drunkard's Walk had no limits on its length.
+            Thus, its random nature could cause it to stall for a long time if we asked it to clear out too much space.
+            To fix this, we'll add a hard limit on how many iterations the walk lasts.
+            In my solution, I replaced the original while loop with the following for loop:
+        </p>
+        <pre class="hl"><span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">uint16_t</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> goal <span class="hl opt">*</span> <span class="hl num">2</span> <span class="hl opt">&amp;&amp;</span> count <span class="hl opt">&lt;</span> goal<span class="hl opt">; ++</span>i<span class="hl opt">)</span></pre>
+        <p>
+            This loop iterates for the maximum allowed number of steps, but will also break out when the goal value is reached.
+            The other improvement that I made to the Drunkard's Walk was taking the goal value as an argument to the function.
+            While this is not strictly required, it makes it easy to customize the generation function further down the road.
+        </p>
+
+        <h3>Some Refactoring</h3>
+        <p>
+            Before we start working on erosion, I'll be making one important change to the code.
+            Up until now, we've been passing around positions as a pair of arguments (line and column, or x and y).
+            This is fine for simple things, but it'll cause us headaches if we need to store several positions, at which point it becomes a hassle.
+            To fix that, I've replaced all of the argument pairs with a simple struct for holding positions.
+            All it does is store the same data (y and x) as before, but it a single piece of data that can be returned from functions or used in an array.
+        </p>
+
+        <h3>Improved Erosion</h3>
+        <p>
+            With that detail handled, let's turn our attention to the "erosion" algorithm and try to fill in those extra pockets.
+            The theory behind this is fairly straightforward: Find each pocket and record the size, then fill in all but the largest.
+            Actually detecting and measuring these pockets may seem daunting, but we can accomplish this using a simple flood-fill algorithm.
+        </p>
+        <h4>A Simple Flood-Fill</h4>
+        <p>
+            The basic idea behind flood-filling an area is "discovering" neighboring tiles each time a tile is filled.
+            This way, the fill spreads across all identical tiles, covering the desired area.
+            This may seem like a natural case for recursion (Fill tile, call self on neighboring tiles), but this is actually a pretty bad idea because flooding large areas can result in a stack overflow.
+            Instead, I'll show you how to do it with a separate stack (a queue will also work, but may be slower depending on how you use it).
+            Take a look at the animation below:
+        </p>
+        <img class="center-screenshot" src="roguelike_05_01.gif" alt="An animation demonstrating a stack-based flood-fill"/>
+        <p>
+            In the animation, black tiles are walls, gray tiles are "discovered" tiles on the stack, and blue tiles have been filled in.
+            Every step, the top tile on the stack is removed and filled, then the adjacent (valid) tiles are pushed onto the stack.
+            This loop continues until the stack is empty, turning our potentially dangerous recursion into a simple while-loop.
+            Here's the code I used:
+        </p>
+<pre class="hl">
+<span class="hl lin">   52 </span><span class="hl kwb">int</span> <span class="hl kwd">group_flood</span><span class="hl opt">(</span><span class="hl kwb">int</span><span class="hl opt">**</span> groups<span class="hl opt">,</span> point p<span class="hl opt">,</span> point corner<span class="hl opt">,</span> <span class="hl kwb">int</span> group_index<span class="hl opt">) {</span>
+<span class="hl lin">   53 </span>    point<span class="hl opt">*</span> remaining <span class="hl opt">=</span> <span class="hl kwd">calloc</span><span class="hl opt">(</span><span class="hl num">10</span><span class="hl opt">,</span> <span class="hl kwa">sizeof</span><span class="hl opt">(</span>point<span class="hl opt">));</span>
+<span class="hl lin">   54 </span>    <span class="hl kwb">uint16_t</span> remaining_data_size <span class="hl opt">=</span> <span class="hl num">10</span><span class="hl opt">;</span>
+<span class="hl lin">   55 </span>    <span class="hl kwb">uint16_t</span> remaining_count <span class="hl opt">=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">   56 </span>    <span class="hl kwb">int</span> counter <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">   57 </span>    remaining<span class="hl opt">[</span><span class="hl num">0</span><span class="hl opt">] =</span> p<span class="hl opt">;</span>
+<span class="hl lin">   58 </span>
+<span class="hl lin">   59 </span>    <span class="hl kwa">while</span><span class="hl opt">(</span>remaining_count <span class="hl opt">&gt;</span> <span class="hl num">0</span><span class="hl opt">) {</span>
+<span class="hl lin">   60 </span>        remaining_count<span class="hl opt">--;</span>
+<span class="hl lin">   61 </span>        counter<span class="hl opt">++;</span>
+<span class="hl lin">   62 </span>        <span class="hl slc">// Note: Because this value is copied here, changing it later won&apos;t effect cur.</span>
+<span class="hl lin">   63 </span>        point cur <span class="hl opt">=</span> remaining<span class="hl opt">[</span>remaining_count<span class="hl opt">];</span>
+<span class="hl lin">   64 </span>
+<span class="hl lin">   65 </span>        <span class="hl slc">// If we don&apos;t have enough slots for all adjacent tiles, resize</span>
+<span class="hl lin">   66 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>remaining_count <span class="hl opt">+</span> <span class="hl num">4</span> <span class="hl opt">&gt;</span> remaining_data_size<span class="hl opt">) {</span>
+<span class="hl lin">   67 </span>            remaining_data_size <span class="hl opt">+=</span> <span class="hl num">4</span><span class="hl opt">;</span>
+<span class="hl lin">   68 </span>            remaining <span class="hl opt">=</span> <span class="hl kwd">realloc</span><span class="hl opt">(</span>remaining<span class="hl opt">,</span> remaining_data_size <span class="hl opt">*</span> <span class="hl kwa">sizeof</span><span class="hl opt">(</span>point<span class="hl opt">));</span>
+<span class="hl lin">   69 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   70 </span>
+<span class="hl lin">   71 </span>        groups<span class="hl opt">[</span>cur<span class="hl opt">.</span>line<span class="hl opt">][</span>cur<span class="hl opt">.</span>column<span class="hl opt">] =</span> group_index<span class="hl opt">;</span>
+<span class="hl lin">   72 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>cur<span class="hl opt">.</span>line <span class="hl opt">&gt;</span> <span class="hl num">0</span> <span class="hl opt">&amp;&amp;</span> groups<span class="hl opt">[</span>cur<span class="hl opt">.</span>line <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">][</span>cur<span class="hl opt">.</span>column<span class="hl opt">] == -</span><span class="hl num">1</span><span class="hl opt">) {</span>
+<span class="hl lin">   73 </span>            remaining<span class="hl opt">[</span>remaining_count<span class="hl opt">] = (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> cur<span class="hl opt">.</span>line <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">, .</span>column <span class="hl opt">=</span> cur<span class="hl opt">.</span>column <span class="hl opt">};</span>
+<span class="hl lin">   74 </span>            remaining_count<span class="hl opt">++;</span>
+<span class="hl lin">   75 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   76 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>cur<span class="hl opt">.</span>line <span class="hl opt">&lt;</span> corner<span class="hl opt">.</span>line <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">&amp;&amp;</span> groups<span class="hl opt">[</span>cur<span class="hl opt">.</span>line <span class="hl opt">+</span> <span class="hl num">1</span><span class="hl opt">][</span>cur<span class="hl opt">.</span>column<span class="hl opt">] == -</span><span class="hl num">1</span><span class="hl opt">) {</span>
+<span class="hl lin">   77 </span>            remaining<span class="hl opt">[</span>remaining_count<span class="hl opt">] = (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> cur<span class="hl opt">.</span>line <span class="hl opt">+</span> <span class="hl num">1</span><span class="hl opt">, .</span>column <span class="hl opt">=</span> cur<span class="hl opt">.</span>column <span class="hl opt">};</span>
+<span class="hl lin">   78 </span>            remaining_count<span class="hl opt">++;</span>
+<span class="hl lin">   79 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   80 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>cur<span class="hl opt">.</span>column <span class="hl opt">&gt;</span> <span class="hl num">0</span> <span class="hl opt">&amp;&amp;</span> groups<span class="hl opt">[</span>cur<span class="hl opt">.</span>line<span class="hl opt">][</span>cur<span class="hl opt">.</span>column <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">] == -</span><span class="hl num">1</span><span class="hl opt">) {</span>
+<span class="hl lin">   81 </span>            remaining<span class="hl opt">[</span>remaining_count<span class="hl opt">] = (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> cur<span class="hl opt">.</span>line<span class="hl opt">, .</span>column <span class="hl opt">=</span> cur<span class="hl opt">.</span>column <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">};</span>
+<span class="hl lin">   82 </span>            remaining_count<span class="hl opt">++;</span>
+<span class="hl lin">   83 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   84 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>cur<span class="hl opt">.</span>column <span class="hl opt">&lt;</span> corner<span class="hl opt">.</span>column <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">&amp;&amp;</span> groups<span class="hl opt">[</span>cur<span class="hl opt">.</span>line<span class="hl opt">][</span>cur<span class="hl opt">.</span>column <span class="hl opt">+</span> <span class="hl num">1</span><span class="hl opt">] == -</span><span class="hl num">1</span><span class="hl opt">) {</span>
+<span class="hl lin">   85 </span>            remaining<span class="hl opt">[</span>remaining_count<span class="hl opt">] = (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> cur<span class="hl opt">.</span>line<span class="hl opt">, .</span>column <span class="hl opt">=</span> cur<span class="hl opt">.</span>column <span class="hl opt">+</span> <span class="hl num">1</span> <span class="hl opt">};</span>
+<span class="hl lin">   86 </span>            remaining_count<span class="hl opt">++;</span>
+<span class="hl lin">   87 </span>        <span class="hl opt">}</span>
+<span class="hl lin">   88 </span>    <span class="hl opt">}</span>
+<span class="hl lin">   89 </span>
+<span class="hl lin">   90 </span>    <span class="hl kwa">return</span> counter<span class="hl opt">;</span>
+<span class="hl lin">   91 </span><span class="hl opt">}</span>
+</pre>
+        <p>
+            ...And here's the addition to the generator that isolates the biggest group:
+        </p>
+<pre class="hl">
+<span class="hl lin">  184 </span>    <span class="hl kwb">int</span><span class="hl opt">**</span> group <span class="hl opt">=</span> <span class="hl kwd">calloc</span><span class="hl opt">(</span>m<span class="hl opt">-&gt;</span>lines<span class="hl opt">,</span> <span class="hl kwa">sizeof</span><span class="hl opt">(</span><span class="hl kwb">int</span><span class="hl opt">*));</span>
+<span class="hl lin">  185 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  186 </span>        group<span class="hl opt">[</span>i<span class="hl opt">] =</span> <span class="hl kwd">calloc</span><span class="hl opt">(</span>m<span class="hl opt">-&gt;</span>columns<span class="hl opt">,</span> <span class="hl kwa">sizeof</span><span class="hl opt">(</span><span class="hl kwb">int</span><span class="hl opt">));</span>
+<span class="hl lin">  187 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> j <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>columns<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  188 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span>m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">].</span>solid<span class="hl opt">)</span>
+<span class="hl lin">  189 </span>                group<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">] =</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  190 </span>            <span class="hl kwa">else</span>
+<span class="hl lin">  191 </span>                group<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">] = -</span><span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  192 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  193 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  194 </span>
+<span class="hl lin">  195 </span>    <span class="hl kwb">int</span> group_index <span class="hl opt">=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  196 </span>    <span class="hl kwb">int</span> largest_group <span class="hl opt">= -</span><span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  197 </span>    <span class="hl kwb">int</span> largest_group_size <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  198 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  199 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> j <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>columns<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  200 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span>group<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">] &lt;</span> <span class="hl num">0</span><span class="hl opt">) {</span>
+<span class="hl lin">  201 </span>                <span class="hl kwb">int</span> size <span class="hl opt">=</span> <span class="hl kwd">group_flood</span><span class="hl opt">(</span>group<span class="hl opt">, (</span>point<span class="hl opt">){.</span>line<span class="hl opt">=</span>i<span class="hl opt">,.</span>column<span class="hl opt">=</span>j<span class="hl opt">}, (</span>point<span class="hl opt">){ .</span>line<span class="hl opt">=</span>m<span class="hl opt">-&gt;</span>lines<span class="hl opt">, .</span>column<span class="hl opt">=</span>m<span class="hl opt">-&gt;</span>columns <span class="hl opt">},</span> group_index<span class="hl opt">);</span>
+<span class="hl lin">  202 </span>                <span class="hl kwa">if</span><span class="hl opt">(</span>size <span class="hl opt">&gt;</span> largest_group_size<span class="hl opt">) {</span>
+<span class="hl lin">  203 </span>                    largest_group <span class="hl opt">=</span> group_index<span class="hl opt">;</span>
+<span class="hl lin">  204 </span>                    largest_group_size <span class="hl opt">=</span> size<span class="hl opt">;</span>
+<span class="hl lin">  205 </span>                <span class="hl opt">}</span>
+<span class="hl lin">  206 </span>                group_index<span class="hl opt">++;</span>
+<span class="hl lin">  207 </span>            <span class="hl opt">}</span>
+<span class="hl lin">  208 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  209 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  210 </span>
+<span class="hl lin">  211 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  212 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> j <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>columns<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  213 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span>group<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">] !=</span> largest_group<span class="hl opt">) {</span>
+<span class="hl lin">  214 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">].</span>solid <span class="hl opt">=</span> TRUE<span class="hl opt">;</span>
+<span class="hl lin">  215 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>j<span class="hl opt">].</span>character <span class="hl opt">=</span> <span class="hl num">219</span><span class="hl opt">;</span>
+<span class="hl lin">  216 </span>            <span class="hl opt">}</span>
+<span class="hl lin">  217 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  218 </span>    <span class="hl opt">}</span>
+</pre>
+        <p>
+            With this, your "erosion" generator should now always result in a single unbroken area.
+            Now let's move on to this segment's topic, where I'll demonstrate how to design and create an area for a roguelike.
+        </p>
+
+        <h2>Design</h2>
+        <p>
+            Normally, you'd want to come up with each area of your roguelike as part of the greater whole, in order to make the game world feel more cohesive.
+            For instance, the areas of Something Something Office Rampage were each designed to fit the narrative of the game (disgruntled office worker at Umbrella Corp. stand-in trashing the place).
+            This approach is more likely to give good results than making things up as we go along.
+        </p>
+        <p>
+            Unfortunately, we can't do that here.
+            Since I'm building a level outside the context for any particular game, there's no narrative or world to fit into in the first place.
+            Instead, the level that I'll be building is a sort of stand-alone area, something with a strong theme that looks like it could be at home in a larger work.
+        </p>
+
+        <h3>Presenting: The Swamp Cave</h3>
+
+        <p>
+            The swamp cave is a damp and winding marshy underground cavern full of water and grime.
+            It presents a perfect environment for demonstrating our algorithms.
+        </p>
+
+        <h3>Asking Questions</h3>
+        <p>
+            When you have an idea for your level's theme, there are two questions that you can ask yourself to flesh out your design:
+        </p>
+        <ol>
+            <li>What are the primary visual elements in your theme?</li>
+            <li>What challenges could your theme present to the player?</li>
+        </ol>
+        <p>
+            In our case, these questions are easy to answer.
+            Water features, such as ponds and rivers, are perfect for a swamp, while also creating natural barriers for the player to overcome.
+            If we then populate the area with a higher concentration of flying and amphibious enemies, the level's theme and challenge will come together naturally.
+            To keep things simple, I'll be focusing on 2 specific obstacles: Ponds and Rivers.
+        </p>
+        <h2>Development</h2>
+        <p>
+            Now that we've decided on the primary features of our level, the next step is to figure out how to generate each of them.
+            First, the walls.
+            I'm starting out by generating a mostly empty cavern using the erosion generator.
+        </p>
+        <img class="center-screenshot" src="roguelike_05_02.png" alt="A screenshot of a large, sparse cavern"/>
+        <p>
+            As you can see, it's very boring.
+            Let's spruce it up with some ponds!
+            To make ponds, I've repurposed the erosion generator.
+            When running the generator on small maps with the right ratio (in this case, 50%), the result is a blob of open space.
+            So, to place a pond you simply need to make a second map, run the generator, and copy the open spaces over as water.
+            Here's the code I ued for copying:
+        </p>
+<pre class="hl">
+<span class="hl lin">  231 </span><span class="hl kwb">void</span> <span class="hl kwd">map_place_water</span><span class="hl opt">(</span>map<span class="hl opt">*</span> m<span class="hl opt">,</span> map<span class="hl opt">*</span> src<span class="hl opt">,</span> point loc<span class="hl opt">) {</span>
+<span class="hl lin">  232 </span>    point ul <span class="hl opt">= (</span>point<span class="hl opt">){</span> loc<span class="hl opt">.</span>line <span class="hl opt">- (</span>src<span class="hl opt">-&gt;</span>lines <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">),</span> loc<span class="hl opt">.</span>column <span class="hl opt">- (</span>src<span class="hl opt">-&gt;</span>columns <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) };</span>
+<span class="hl lin">  233 </span>    point br <span class="hl opt">= (</span>point<span class="hl opt">){</span> loc<span class="hl opt">.</span>line <span class="hl opt">+ (</span>src<span class="hl opt">-&gt;</span>lines <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">),</span> loc<span class="hl opt">.</span>column <span class="hl opt">+ (</span>src<span class="hl opt">-&gt;</span>columns <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) };</span>
+<span class="hl lin">  234 </span>    point offset <span class="hl opt">= (</span>point<span class="hl opt">) {</span><span class="hl num">0</span><span class="hl opt">};</span>
+<span class="hl lin">  235 </span>
+<span class="hl lin">  236 </span>    <span class="hl kwa">if</span><span class="hl opt">(</span>loc<span class="hl opt">.</span>line <span class="hl opt">&lt;</span> src<span class="hl opt">-&gt;</span>lines <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) {</span>
+<span class="hl lin">  237 </span>        offset<span class="hl opt">.</span>line <span class="hl opt">= (</span>src<span class="hl opt">-&gt;</span>lines <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) -</span> loc<span class="hl opt">.</span>line<span class="hl opt">;</span>
+<span class="hl lin">  238 </span>        ul<span class="hl opt">.</span>line <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  239 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  240 </span>    <span class="hl kwa">if</span><span class="hl opt">(</span>loc<span class="hl opt">.</span>column <span class="hl opt">&lt;</span> src<span class="hl opt">-&gt;</span>columns <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) {</span>
+<span class="hl lin">  241 </span>        offset<span class="hl opt">.</span>column <span class="hl opt">= (</span>src<span class="hl opt">-&gt;</span>columns <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">) -</span> loc<span class="hl opt">.</span>column<span class="hl opt">;</span>
+<span class="hl lin">  242 </span>        ul<span class="hl opt">.</span>column <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span>
+<span class="hl lin">  243 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  244 </span>    <span class="hl kwa">if</span><span class="hl opt">(</span>br<span class="hl opt">.</span>line <span class="hl opt">&gt;=</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">)</span>
+<span class="hl lin">  245 </span>        br<span class="hl opt">.</span>line <span class="hl opt">=</span> m<span class="hl opt">-&gt;</span>lines <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  246 </span>    <span class="hl kwa">if</span><span class="hl opt">(</span>br<span class="hl opt">.</span>column <span class="hl opt">&gt;=</span> m<span class="hl opt">-&gt;</span>columns<span class="hl opt">)</span>
+<span class="hl lin">  247 </span>        br<span class="hl opt">.</span>column <span class="hl opt">=</span> m<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  248 </span>
+<span class="hl lin">  249 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">uint16_t</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> br<span class="hl opt">.</span>line <span class="hl opt">-</span> ul<span class="hl opt">.</span>line<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  250 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">uint16_t</span> j <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> j <span class="hl opt">&lt;</span> br<span class="hl opt">.</span>column <span class="hl opt">-</span> ul<span class="hl opt">.</span>column<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  251 </span>            <span class="hl kwa">if</span><span class="hl opt">(!</span>src<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i <span class="hl opt">+</span> offset<span class="hl opt">.</span>line<span class="hl opt">][</span>j <span class="hl opt">+</span> offset<span class="hl opt">.</span>column<span class="hl opt">].</span>solid<span class="hl opt">) {</span>
+<span class="hl lin">  252 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>ul<span class="hl opt">.</span>line <span class="hl opt">+</span> i<span class="hl opt">][</span>ul<span class="hl opt">.</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>character <span class="hl opt">=</span> <span class="hl str">&apos;~&apos;</span><span class="hl opt">;</span>
+<span class="hl lin">  253 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>ul<span class="hl opt">.</span>line <span class="hl opt">+</span> i<span class="hl opt">][</span>ul<span class="hl opt">.</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>solid <span class="hl opt">=</span> TRUE<span class="hl opt">;</span>
+<span class="hl lin">  254 </span>            <span class="hl opt">}</span>
+<span class="hl lin">  255 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  256 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  257 </span><span class="hl opt">}</span>
+</pre>
+        <p>
+            Most of this code is dedicated to 'clipping' the bounds of the map being copied, so that it doesn't spill over the edge of the other map.
+            After placing a few ponds, our level now looks like this:
+        </p>
+        <img class="center-screenshot" src="roguelike_05_03.png" alt="A screenshot of a large, sparse cavern, but now with ponds"/>
+
+        <h3>River Time</h3>
+        <p>
+            Next, let's add a more prominent water feature.
+            Unlike ponds, rivers require some custom work to make them nice.
+            To make a river, I used a random walk.
+            Unlike Drunkard's Walk, however, this walk always moves from the top of the map to the bottom, randomly shifting left and right.
+            At each step, it places a randomized horizontal line of water, which eventually leads to a meandering and natural-looking line.
+        </p>
+        <p>
+            To finish it off and cement it as a proper river, I made it branch.
+            This may seem difficult, but the solution I chose was quite simple.
+            At a random point in the walk, I record the position of the cursor.
+            Then, I perform a second walk from that point but force the walk to move to one side horizontally.
+            The result is (usually) a nice fork in the river.
+            Here's what the code looks like:
+        </p>
+<pre class="hl">
+<span class="hl lin">  258 </span><span class="hl kwb">void</span> <span class="hl kwd">map_generate_river</span><span class="hl opt">(</span>map<span class="hl opt">*</span> m<span class="hl opt">,</span> <span class="hl kwb">uint16_t</span> column<span class="hl opt">) {</span>
+<span class="hl lin">  259 </span>    <span class="hl kwb">bool</span> split <span class="hl opt">=</span> FALSE<span class="hl opt">;</span>
+<span class="hl lin">  260 </span>    point split_point<span class="hl opt">;</span>
+<span class="hl lin">  261 </span>    <span class="hl kwb">int</span> split_mod <span class="hl opt">=</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  262 </span>    <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> <span class="hl num">0</span><span class="hl opt">;</span> i <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  263 </span>        <span class="hl kwb">int</span> width <span class="hl opt">=</span> <span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">4</span> <span class="hl opt">+</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  264 </span>        <span class="hl kwb">int</span> min <span class="hl opt">= -</span>width <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  265 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>column <span class="hl opt">+</span> min <span class="hl opt">&lt;=</span> <span class="hl num">0</span><span class="hl opt">)</span>
+<span class="hl lin">  266 </span>            min <span class="hl opt">=</span> <span class="hl num">1</span> <span class="hl opt">-</span> column<span class="hl opt">;</span>
+<span class="hl lin">  267 </span>        <span class="hl kwb">int</span> max <span class="hl opt">=</span> width <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  268 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span>column <span class="hl opt">+</span> max <span class="hl opt">&gt;=</span> m<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">)</span>
+<span class="hl lin">  269 </span>            max <span class="hl opt">=</span> m<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">2</span> <span class="hl opt">-</span> column<span class="hl opt">;</span>
+<span class="hl lin">  270 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> min<span class="hl opt">;</span> j <span class="hl opt">&lt;</span> max<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  271 </span>            m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>character <span class="hl opt">=</span> <span class="hl str">&apos;~&apos;</span><span class="hl opt">;</span>
+<span class="hl lin">  272 </span>            m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>solid <span class="hl opt">=</span> TRUE<span class="hl opt">;</span>
+<span class="hl lin">  273 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  274 </span>        column <span class="hl opt">+=</span> <span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">3</span> <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  275 </span>
+<span class="hl lin">  276 </span>        <span class="hl kwa">if</span><span class="hl opt">(</span><span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">10</span> <span class="hl opt">==</span> <span class="hl num">0</span> <span class="hl opt">&amp;&amp; !</span>split<span class="hl opt">) {</span>
+<span class="hl lin">  277 </span>            split <span class="hl opt">=</span> TRUE<span class="hl opt">;</span>
+<span class="hl lin">  278 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span><span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">2</span> <span class="hl opt">==</span> <span class="hl num">0</span><span class="hl opt">)</span>
+<span class="hl lin">  279 </span>                split_point <span class="hl opt">= (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> i<span class="hl opt">, .</span>column <span class="hl opt">=</span> column <span class="hl opt">+</span> max <span class="hl opt">+</span> <span class="hl num">1</span> <span class="hl opt">};</span>
+<span class="hl lin">  280 </span>            <span class="hl kwa">else</span> <span class="hl opt">{</span>
+<span class="hl lin">  281 </span>                split_point <span class="hl opt">= (</span>point<span class="hl opt">){ .</span>line <span class="hl opt">=</span> i<span class="hl opt">, .</span>column <span class="hl opt">=</span> column <span class="hl opt">+</span> min <span class="hl opt">-</span> <span class="hl num">1</span> <span class="hl opt">};</span>
+<span class="hl lin">  282 </span>                split_mod <span class="hl opt">= -</span><span class="hl num">1</span><span class="hl opt">;</span>
+<span class="hl lin">  283 </span>            <span class="hl opt">}</span>
+<span class="hl lin">  284 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  285 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  286 </span>
+<span class="hl lin">  287 </span>    <span class="hl kwa">if</span><span class="hl opt">(</span>split<span class="hl opt">) {</span>
+<span class="hl lin">  288 </span>        column <span class="hl opt">=</span> split_point<span class="hl opt">.</span>column<span class="hl opt">;</span>
+<span class="hl lin">  289 </span>        <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> i <span class="hl opt">=</span> split_point<span class="hl opt">.</span>line<span class="hl opt">;</span> i <span class="hl opt">&lt;</span> m<span class="hl opt">-&gt;</span>lines<span class="hl opt">; ++</span>i<span class="hl opt">) {</span>
+<span class="hl lin">  290 </span>            <span class="hl kwb">int</span> width <span class="hl opt">=</span> <span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">4</span> <span class="hl opt">+</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  291 </span>            <span class="hl kwb">int</span> min <span class="hl opt">= -</span>width <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  292 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span>column <span class="hl opt">+</span> min <span class="hl opt">&lt;=</span> <span class="hl num">0</span><span class="hl opt">)</span>
+<span class="hl lin">  293 </span>                min <span class="hl opt">=</span> <span class="hl num">1</span> <span class="hl opt">-</span> column<span class="hl opt">;</span>
+<span class="hl lin">  294 </span>            <span class="hl kwb">int</span> max <span class="hl opt">=</span> width <span class="hl opt">/</span> <span class="hl num">2</span><span class="hl opt">;</span>
+<span class="hl lin">  295 </span>            <span class="hl kwa">if</span><span class="hl opt">(</span>column <span class="hl opt">+</span> max <span class="hl opt">&gt;=</span> m<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">1</span><span class="hl opt">)</span>
+<span class="hl lin">  296 </span>                max <span class="hl opt">=</span> m<span class="hl opt">-&gt;</span>columns <span class="hl opt">-</span> <span class="hl num">2</span> <span class="hl opt">-</span> column<span class="hl opt">;</span>
+<span class="hl lin">  297 </span>            <span class="hl kwa">for</span><span class="hl opt">(</span><span class="hl kwb">int</span> j <span class="hl opt">=</span> min<span class="hl opt">;</span> j <span class="hl opt">&lt;</span> max<span class="hl opt">; ++</span>j<span class="hl opt">) {</span>
+<span class="hl lin">  298 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>character <span class="hl opt">=</span> <span class="hl str">&apos;~&apos;</span><span class="hl opt">;</span>
+<span class="hl lin">  299 </span>                m<span class="hl opt">-&gt;</span>data<span class="hl opt">[</span>i<span class="hl opt">][</span>column <span class="hl opt">+</span> j<span class="hl opt">].</span>solid <span class="hl opt">=</span> TRUE<span class="hl opt">;</span>
+<span class="hl lin">  300 </span>            <span class="hl opt">}</span>
+<span class="hl lin">  301 </span>            column <span class="hl opt">+=</span> <span class="hl kwd">rand</span><span class="hl opt">() %</span> <span class="hl num">3</span> <span class="hl opt">*</span> split_mod<span class="hl opt">;</span>
+<span class="hl lin">  302 </span>        <span class="hl opt">}</span>
+<span class="hl lin">  303 </span>    <span class="hl opt">}</span>
+<span class="hl lin">  304 </span><span class="hl opt">}</span>
+</pre>
+        <p>
+            It's a little messy, but as you can see below it really does the trick!
+        </p>
+        <img class="center-screenshot" src="roguelike_05_04.png" alt="A screenshot of a large, sparse cavern, but now with ponds"/>
+
+        <h2>Polish</h2>
+        <p>
+            We now have a swamp cave.
+            The only problem is... it doesn't look swampy at all!
+            Sure, we've added some water features, but without color it blends in with the rest of the scene.
+            So, let's add some color to our map.
+        </p>
+        <h3>Introduction to Color</h3>
+        <p>
+            As I mentioned back in part 2, PDCurses provides 16 different colors which are used in pairs (text and background).
+            Each color and pair has its own numerical index that can be used to refer to it.
+            With that knowledge, let's jump right in!
+            There are several useful functions for initializing color:
+        </p>
+        <ul>
+            <li><b>start_color()</b> - This should be called at the beginning of the game, after <b>initscr()</b></li>
+            <li><b>use_default_colors()</b> - This function sets the available colors to their default values. It's not <i>necessary</i>, but can be useful if you don't want to customize everything.</li>
+            <li><b>init_pair(</b>pair id, foreground id, background id<b>)</b> - Sets the foreground and background colors of a pair.</li>
+        </ul>
+        <p>
+            Once colors and pairs are ready, all that's left is to use them.
+            The <b>color_set(</b>pair id, opts<b>)</b> function is used to tell curses which color to use when drawing.
+            All you need to do is call the function with the id you want (opts should be left as NULL, it isn't often used), and all text that you draw after that will use the pair you chose.
+            I already put color pair ids on the tile and actor structs ahead of time for this very moment, so all that I've done to enable color is add <b>color_set()</b> calls to the drawing functions.
+            I've also set the ground color to yellow, and added a mix of blues and greens to the water.
+            The result looks like this:
+        </p>
+        <img class="center-screenshot" src="roguelike_05_05.png" alt="A screenshot of a large, sparse cavern, but now with ponds"/>
+        <p>
+            It's a good start, but we can do better.
+            The final function that I'll bring up today is the <b>init_color(</b>color id, red, green, blue<b>)</b> function.
+            With this function, we can change any color to make it match what we're using it for.
+            While the arguments are pretty straightforward, one thing to be aware of is that each color value is an int between 0 (nothing) and 1000 (everything).
+            This sort of notation is rather unconventional, but it's not too bad once you get used to it.
+            After swapping colors around, and adding some random bits of grass to the empty tiles, the result is much better:
+        </p>
+        <img class="center-screenshot" src="roguelike_05_06.png" alt="A screenshot of a large, sparse cavern, but now with ponds"/>
+        <p>
+            I won't call this cave perfect.
+            With just the terrain, it still feels rather empty, and I could spend the rest of the day just tweaking colors and adding small details.
+            At the end of the day, making a good environment takes time, regardless of medium.
+            Still, I hope this example has given you some inspiration to create your own natural procedural spaces!
+        </p>
+
+        <h2>Next Steps</h2>
+        <p>
+            I don't have any specific tasks for you to follow this time around.
+            Instead, try to follow along the steps that I showed in this segment to create your own level.
+        </p>
+
+        <h2>Code</h2>
+        <p>To download the code as of this part, <a href="https://github.com/Df458/Dark-Lands/archive/8c9cff95e09a5ab59e1eee7416adaa8eccb158af.zip">click here</a>.</p>
+
+        <div class="tnav-flex">
+            <a href="roguelike_04.html" rel="prev">Previous Part</a>
+            <a href="roguelike_index.html">Index</a>
+            <a href="#" rel="next" class="tnav-spacer" aria-hidden="true">Next Part</a>
+            <!-- <a href="roguelike_06.html" rel="next">Next Part</a> -->
+        </div>
+    </main>
+    </body>
+</html>
