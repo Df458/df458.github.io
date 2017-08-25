@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel='stylesheet' href='../theme.css'>
         <link rel='stylesheet' href='../main.css'>
         <link rel='stylesheet' href='../tutorials.css'>
         <link rel='stylesheet' href='../highlight.css'>
@@ -35,16 +36,19 @@
         </p>
 
         <h2>How Do We Render Our World?</h2>
-        In the introduction, I stated that we'd be using text-based graphics.
-        If you haven't done this sort of thing before, you might be wondering how to accomplish that.
-        After all, it would be pretty inefficient of us to write custom rendering code just for text, and printing lines to a terminal seems a bit silly if we're planning on drawing an actual map.
-        <br/><br/>
-        Thankfully, we have an API that solves this problem for us.
-        A long (by computer standards) time ago, there was a library called curses.
-        This library was designed for creating UIs in terminals, and spawned a number of similar projects.
-        Two such projects remain: <b>ncurses</b> and <b>PDCurses</b>.
-        Because the two libraries are based off the same origin, they have nearly identical APIs.
-        Let's compare:
+        <p>
+            In the introduction, I stated that we'd be using text-based graphics.
+            If you haven't done this sort of thing before, you might be wondering how to accomplish that.
+            After all, it would be pretty inefficient of us to write custom rendering code just for text, and printing lines to a terminal seems a bit silly if we're planning on drawing an actual map.
+        </p>
+        <p>
+            Thankfully, we have an API that solves this problem for us.
+            A long (by computer standards) time ago, there was a library called curses.
+            This library was designed for creating UIs in terminals, and spawned a number of similar projects.
+            Two such projects remain: <b>ncurses</b> and <b>PDCurses</b>.
+            Because the two libraries are based off the same origin, they have nearly identical APIs.
+            Let's compare:
+        </p>
 
         <h3>ncurses</h3>
         <ul>
@@ -58,78 +62,92 @@
             <li>Sometimes terminal based, usually uses its own window</li>
             <li>Supports DOS, OS/2, Windows, X11 (Usually Linux), SDL</li>
         </ul>
-        <br/>
-        I'll be supporting both libraries in my project, but I'll mostly be teaching PDCurses. Both libraries are good choices, but PDCurses has better overall support for non-unix platforms.
-        Specifically, I'll be using the SDL version since it compiles on all major platforms without any issues.
-        I mostly develop on and for Linux, but I also understand that most game developers don't, so selecting an option that works well regardless of platform seems like the best way to make this tutorial useful to others.
-        The other benefit of using PDCurses is that we can draw in a separate window instead of a terminal.
-        This makes the game easier for new players to pick up, and gives us a common set of features to work with.
-        <br/><br/>
-        Unfortunately, using PDCurses means making some tradeoffs.
-        Most varieties of curses are palette-based, so there's usually a limit to how many colors can be used at once.
-        ncurses supports up to 256 colors, and a variety of other features, depending on the terminal that it's running in.
-        PDCurses (at least the SDL version) can only handle 16.
-        Of course, with ncurses nothing is guaranteed, so you'd need to check the features of the terminal running your game at launch and adjust accordingly.
-        PDCurses also allows you to do a few unique things, such as changing the font and the background.
-        At the end of the day, you can use either or both and still have a viable project.
+        <p>
+            I'll be supporting both libraries in my project, but I'll mostly be teaching PDCurses. Both libraries are good choices, but PDCurses has better overall support for non-unix platforms.
+            Specifically, I'll be using the SDL version since it compiles on all major platforms without any issues.
+            I mostly develop on and for Linux, but I also understand that most game developers don't, so selecting an option that works well regardless of platform seems like the best way to make this tutorial useful to others.
+            The other benefit of using PDCurses is that we can draw in a separate window instead of a terminal.
+            This makes the game easier for new players to pick up, and gives us a common set of features to work with.
+        </p>
+        <p>
+            Unfortunately, using PDCurses means making some tradeoffs.
+            Most varieties of curses are palette-based, so there's usually a limit to how many colors can be used at once.
+            ncurses supports up to 256 colors, and a variety of other features, depending on the terminal that it's running in.
+            PDCurses (at least the SDL version) can only handle 16.
+            Of course, with ncurses nothing is guaranteed, so you'd need to check the features of the terminal running your game at launch and adjust accordingly.
+            PDCurses also allows you to do a few unique things, such as changing the font and the background.
+            At the end of the day, you can use either or both and still have a viable project.
+        </p>
         <aside class="note">
             <h4 class="note-heading">Note - Playing With Power</h4>
             You can find a souped-up version of PDCurses with many new features (including true RGB color support) <a href="http://www.projectpluto.com/win32a.htm">here</a>. I would give it a proper recommendation, but I haven't tried using it myself. If you want to try it, be aware that it only works on Windows so you'll be trading in cross-compatibility in exchange for more graphical features. The page says that the X11 and SDL versions have been improved as well, but I still need to play with them. If I <b>do</b> upgrade in the future, I'll come back and update this part with more details.
         </aside>
 
         <h2>Considering the Platform</h2>
-        Since we're working with a form of output that's not exactly standard as far as games go, I'm going to discuss a few important things about it.
+        <p>
+            Since we're working with a form of output that's not exactly standard as far as games go, I'm going to discuss a few important things about it.
+        </p>
 
         <h3>Notation</h3>
-        First off, positions in curses are not handled in the x,y format, but rather the row,column format.
-        The observant among may have noticed that this translates to y,x, making coordinates take their positions in opposite order.
-        Since this is how curses handles it, I will always be handling coordinates and spatial values by giving the vertical part first in this tutorial.
-        It might be a little confusing early on, but you'll get used to it soon enough.
+        <p>
+            First off, positions in curses are not handled in the x,y format, but rather the row,column format.
+            The observant among may have noticed that this translates to y,x, making coordinates take their positions in opposite order.
+            Since this is how curses handles it, I will always be handling coordinates and spatial values by giving the vertical part first in this tutorial.
+            It might be a little confusing early on, but you'll get used to it soon enough.
+        </p>
 
         <h3>Color</h3>
-        Colors are handled in pairs representing the foreground and background.
-        As I mentioned before, the SDL version of PDCurses has a 16 color limit.
-        Thankfully, it also supports changing these colors, so it's possible to cheat by adjusting the palette to cover more than 16 total colors.
-        Another thing to note is that the default background color can be replaced by a background image, which could add a nice touch to your game.
+        <p>
+            Colors are handled in pairs representing the foreground and background.
+            As I mentioned before, the SDL version of PDCurses has a 16 color limit.
+            Thankfully, it also supports changing these colors, so it's possible to cheat by adjusting the palette to cover more than 16 total colors.
+            Another thing to note is that the default background color can be replaced by a background image, which could add a nice touch to your game.
+        </p>
 
         <h3>Text Limits</h3>
-        One more thing to note is that the SDL version of PDCurses doesn't support Unicode.
-        Some other versions of PDCurses <b>do</b> support it, however, as does ncurses.
-        Instead of Unicode, you can use <a href="http://www.asciitable.com/">extended ASCII codes</a>, which provide some additional useful characters.
-        The SDL version also provides the ability to set a custom bitmap font, which you could use to replace certain symbols with (black and white) images if you wanted.
+        <p>
+            One more thing to note is that the SDL version of PDCurses doesn't support Unicode.
+            Some other versions of PDCurses <b>do</b> support it, however, as does ncurses.
+            Instead of Unicode, you can use <a href="http://www.asciitable.com/">extended ASCII codes</a>, which provide some additional useful characters.
+            The SDL version also provides the ability to set a custom bitmap font, which you could use to replace certain symbols with (black and white) images if you wanted.
+        </p>
 
         <h2>Other Tools</h2>
-        Since this tutorial is running alongside an actual project that I'm developing, I think it's important that I also document the tools that I'm using.
-        Thankfully, my setup is pretty simple.
-        I do all of my programming in Neovim, so there are no extra project files to worry about.
-        To compile my code, I'm using the <a href="http://mesonbuild.com/">Meson Build System</a>.
-        While you're under no obligation to use it for your own game (In fact, I probably won't discuss the build process in these tutorials), I recommend that you try to get it working for your platform of choice so that you can easily build any example code that I provide.
-        Meson is python-based and works on Windows, Mac, and Linux, so you shouldn't have too much difficulty with it.
-        The project itself will be managed using git, and hosted on Github.
-        Knowledge of git won't be necessary, but you're really doing yourself a disservice if you don't know at least one form of version control and git is a very good option.
+        <p>
+            Since this tutorial is running alongside an actual project that I'm developing, I think it's important that I also document the tools that I'm using.
+            Thankfully, my setup is pretty simple.
+            I do all of my programming in Neovim, so there are no extra project files to worry about.
+            To compile my code, I'm using the <a href="http://mesonbuild.com/">Meson Build System</a>.
+            While you're under no obligation to use it for your own game (In fact, I probably won't discuss the build process in these tutorials), I recommend that you try to get it working for your platform of choice so that you can easily build any example code that I provide.
+            Meson is python-based and works on Windows, Mac, and Linux, so you shouldn't have too much difficulty with it.
+            The project itself will be managed using git, and hosted on Github.
+            Knowledge of git won't be necessary, but you're really doing yourself a disservice if you don't know at least one form of version control and git is a very good option.
+        </p>
 
         <h2>Next Steps</h2>
-        At the end of most of these tutorial segments, I'll be providing tasks to complete between segments.
-        If there's anything that might need a solution, such as a coding task, I will provide a follow-up at the start of the next segment.
-        This time we're starting off easy:
-        <br/><br/>
+        <p>
+            At the end of most of these tutorial segments, I'll be providing tasks to complete between segments.
+            If there's anything that might need a solution, such as a coding task, I will provide a follow-up at the start of the next segment.
+            This time we're starting off easy:
+        </p>
         <ol>
             <li>If you haven't already, play a few roguelikes.</li>
             <li>Come up with an idea for your own roguelike. If it's your first time, you may want to try to keep things simple starting out. You can always expand things later!</li>
             <li>Make sure that you're ready to begin working on your project. Get PDCurses (or ncurses, if you prefer) installed, and make sure that you can link a project with it. This would also be a good opportunity to try setting up Meson.</li>
         </ol>
-        <br/><br/>
-        To get you started, here are a few of the older, more revered roguelikes. They're all free, so you can easily try any (or all) of them:
-        <br/><br/>
+        <p>
+            To get you started, here are a few of the older, more revered roguelikes. They're all free, so you can easily try any (or all) of them:
+        </p>
         <ol>
             <li><b>Rogue</b> This game started it all. It's a bit simplistic by modern-day standards, but it also defined the genre.</li>
             <li><b>Nethack</b> Nethack is probably one of the most well-known classic roguelikes. It's not the oldest one around, but it sports a lot of forks, spinoffs, and an active community.</li>
             <li><b>Angband</b> Angband is a bit of an odd game, as it borrows elements from the works of JRR Tolkien. It also doesn't make areas persist, causing them to change every time you enter them. It's worth comparing against the others to see some of the variety that's possible in the genre.</li>
             <li><b>ADOM</b> I haven't actually played ADOM, but I've heard a lot of good things about it and it comes from a similar era as the others.</li>
         </ol>
-        <br/>
-        If you'd like to see more examples beyond the "classics", take a look at the <a href="http://www.roguebasin.com/index.php?title=Category:Roguelike_games">Roguebasin Wiki</a>.
-        In addition to being a good development resource, you'll also find tons of games that fit within the genre to some degree.
+        <p>
+            If you'd like to see more examples beyond the "classics", take a look at the <a href="http://www.roguebasin.com/index.php?title=Category:Roguelike_games">Roguebasin Wiki</a>.
+            In addition to being a good development resource, you'll also find tons of games that fit within the genre to some degree.
+        </p>
         <div class="tnav-flex">
             <a href="roguelike_intro.html">Previous Part</a>
             <a href="roguelike_index.html">Index</a>

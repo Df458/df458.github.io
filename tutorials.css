@@ -19,7 +19,7 @@ ul, ol {
 }
 
 .list-link:hover {
-    border-bottom: 2px solid #4ac;
+    border-bottom: 2px solid var(--color-nav-selected);
     padding-bottom: 0;
 }
 
@@ -96,9 +96,10 @@ q {
 }
 
 .center-screenshot {
-    width: 50%;
+    max-width: 50%;
     height: auto;
-    margin-left: 25%;
+    display: block;
+    margin: 0 auto;
 }
 
 @media (max-width: 750px) {

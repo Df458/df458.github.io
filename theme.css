@@ -1,0 +1,12 @@
+body {
+    --color-bg-page: #dad7e0;
+    --color-bg-nav: #222;
+    --color-bg-content: #fff;
+    --color-border-light: #777;
+    --color-nav-selected: #4ac;
+    --color-font: #000000;
+    --color-font-nav: #eee;
+    --color-heading: #222;
+    --color-heading-light: #333;
+    --color-heading-lighter: #444;
+}
