@@ -23,6 +23,12 @@
     <main role="main">
         <h1>Software Projects</h1>
         <div class="soft-flex">
+            <a href="#singularity" class="content-tile" style="background-image: url('img/singularity-icon.svg');">
+                <div class="tile-body">
+                    <span class="title">Singularity</span>
+                    <p class="tile-date">Last Update <time datetime="2018-01-06">1/6/2018</time></p>
+                </div>
+            </a>
             <a href="#halberd" class="content-tile" style="background-image: url('img/software-default.svg');">
                 <div class="tile-body">
                     <span class="title">Halberd</span>
@@ -33,12 +39,6 @@
                 <div class="tile-body">
                     <span class="title">Sorthelper</span>
                     <p class="tile-date">Completed <time datetime="2015-11-14">11/14/2015</time></p>
-                </div>
-            </a>
-            <a href="#singularity" class="content-tile" style="background-image: url('img/software-default.svg');">
-                <div class="tile-body">
-                    <span class="title">Singularity</span>
-                    <p class="tile-date">Completed <time datetime="2013-06-10">06/10/2013</time></p>
                 </div>
             </a>
         </div>
@@ -97,11 +97,16 @@
         <div class="popup">
             <a href="#" onclick="closePopup()"><img class="close-button" alt="Close" src="img/close.svg"></a>
             <div class="popup-content">
+                <div class="popup-main-image"><img src="img/singularity-column-view.png" alt="A screenshot of Singularity's Column View"/></div>
                 <section class="popup-text">
                     <h1>Singularity</h1>
                     <p>
-                        Singularity is a GTK-based webfeed aggregator for the desktop.
-                        Currently only linux is supported, although I may port the code to other platforms in the future.
+                        Singularity is a GTK3 webfeed reader for the desktop.
+                        It has support for RSS, RDF, and Atom feeds.
+                        It can also import/export OPML files to use in other feed readers.
+                    </p>
+                    <p>
+                        The program does not rely on a server or any web services, instead handling everything client-side.
                     </p>
                     <h2>Links</h2>
                     <a href="https://github.com/Df458/Singularity">Github</a>

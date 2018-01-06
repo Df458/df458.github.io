@@ -1,9 +1,6 @@
-h1, h2 {
-    margin-left: 0;
-}
-
 h2, h3 {
     margin-top: 1em;
+    margin-left: 0;
 }
 
 ul, ol {
@@ -12,15 +9,19 @@ ul, ol {
 
 .list-link {
     display: block;
-    color: black;
+    color: #222;
     text-decoration: none;
     padding: 2px;
     list-style-type: none;
+    transition: background 0.2s ease-out;
 }
 
 .list-link:hover {
-    border-bottom: 2px solid var(--color-nav-selected);
-    padding-bottom: 0;
+    /* border-bottom: 2px solid var(--color-nav-selected); */
+    /* padding-bottom: 0; */
+    background: #ccc;
+    border-radius: 3px;
+    transition: background 0.2s ease-out;
 }
 
 .tutorial {
@@ -46,6 +47,17 @@ ul, ol {
     border: 1px #777 solid;
     padding: 6px;
     border-radius: 2px;
+
+    flex: 1;
+    max-width: 7em;
+}
+
+.tnav-flex a:nth-child(2) {
+    text-align: center;
+}
+
+.tnav-flex a:nth-child(3) {
+    text-align: right;
 }
 
 .tnav-spacer {
