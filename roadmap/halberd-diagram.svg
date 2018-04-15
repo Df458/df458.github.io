@@ -112,7 +112,7 @@
       <rect fill="none" x="766.36" width="180" height="73" y="174.5" clip-path="url(#clipPath3)"/>
       <text x="779.4645" xml:space="preserve" y="215.1543" clip-path="url(#clipPath3)" font-family="sans-serif" stroke="none">'Playable' Editor Viewport</text>
     </g>
-    <g fill="rgb(255,102,0)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="rgb(255,102,0)">
+    <g fill="red" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="red">
       <rect x="856.36" width="180" height="73" y="277.5" clip-path="url(#clipPath3)" stroke="none"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke-linecap="butt">
@@ -133,7 +133,7 @@
       <rect x="966.36" y="174.5" clip-path="url(#clipPath3)" fill="none" width="180" rx="4" ry="4" height="73"/>
       <text x="994.1041" y="215.1543" clip-path="url(#clipPath3)" fill="black" font-family="sans-serif" stroke="none" xml:space="preserve">DFGame Tile Module</text>
     </g>
-    <g fill="rgb(255,102,0)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="rgb(255,102,0)">
+    <g fill="rgb(153,204,0)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="rgb(153,204,0)">
       <rect x="1056.36" width="180" height="73" y="277.5" clip-path="url(#clipPath3)" stroke="none"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke-linecap="butt">
@@ -182,12 +182,12 @@
       <rect fill="none" x="461.36" width="180" height="73" y="71.5" clip-path="url(#clipPath3)"/>
       <text x="536.0436" y="112.1543" clip-path="url(#clipPath3)" fill="rgb(255,204,153)" font-family="sans-serif" stroke="none" xml:space="preserve">Stats</text>
     </g>
-    <g fill="red" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="red">
-      <rect x="751.36" width="180" height="73" y="483.5" clip-path="url(#clipPath3)" stroke="none"/>
+    <g fill="rgb(255,102,0)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="rgb(255,102,0)">
+      <rect x="751.36" y="483.5" clip-path="url(#clipPath3)" width="180" rx="4" ry="4" height="73" stroke="none"/>
     </g>
-    <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke-linecap="butt">
-      <rect fill="none" x="751.36" width="180" height="73" y="483.5" clip-path="url(#clipPath3)"/>
-      <text x="765.0182" xml:space="preserve" y="524.1543" clip-path="url(#clipPath3)" font-family="sans-serif" stroke="none">Initial Asset Management</text>
+    <g stroke-linecap="butt" transform="matrix(1,0,0,1,-141,68)" fill="gray" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" stroke="gray" stroke-miterlimit="1.45">
+      <rect x="751.36" y="483.5" clip-path="url(#clipPath3)" fill="none" width="180" rx="4" ry="4" height="73"/>
+      <text x="765.0182" y="524.1543" clip-path="url(#clipPath3)" fill="black" font-family="sans-serif" stroke="none" xml:space="preserve">Initial Asset Management</text>
     </g>
     <g fill="maroon" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="maroon">
       <circle r="37.8" clip-path="url(#clipPath3)" cx="1031.91" cy="629.3" stroke="none"/>
@@ -226,7 +226,7 @@
       <rect fill="none" x="351.36" width="180" height="73" y="380.5" clip-path="url(#clipPath3)"/>
       <text x="416.6891" y="421.1543" clip-path="url(#clipPath3)" fill="rgb(255,204,153)" font-family="sans-serif" stroke="none" xml:space="preserve">Initial UI</text>
     </g>
-    <g fill="red" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="red">
+    <g fill="rgb(255,204,0)" text-rendering="geometricPrecision" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke="rgb(255,204,0)">
       <rect x="751.36" width="180" height="73" y="380.5" clip-path="url(#clipPath3)" stroke="none"/>
     </g>
     <g text-rendering="geometricPrecision" stroke-miterlimit="1.45" shape-rendering="geometricPrecision" transform="matrix(1,0,0,1,-141,68)" stroke-linecap="butt">
@@ -278,8 +278,8 @@
       <path d="M1031.91 903.1 L1036.91 891.1 L1031.91 894.1 L1026.91 891.1 Z" clip-path="url(#clipPath3)" stroke="none"/>
       <path fill="none" d="M441.36 453.5 L441.36 463.5 L641.36 463.5 L641.36 475.4609" clip-path="url(#clipPath3)"/>
       <path d="M641.36 483.4609 L646.36 471.4609 L641.36 474.4609 L636.36 471.4609 Z" clip-path="url(#clipPath3)" stroke="none"/>
-      <path fill="none" d="M841.36 453.5 L841.36 468.5 L841.36 468.5 L841.36 475.5" clip-path="url(#clipPath3)"/>
-      <path d="M841.36 483.5 L846.36 471.5 L841.36 474.5 L836.36 471.5 Z" clip-path="url(#clipPath3)" stroke="none"/>
+      <path fill="none" d="M841.36 453.5 L841.36 468.5 L841.36 468.5 L841.36 475.5125" clip-path="url(#clipPath3)"/>
+      <path d="M841.36 483.5125 L846.36 471.5125 L841.36 474.5125 L836.36 471.5125 Z" clip-path="url(#clipPath3)" stroke="none"/>
     </g>
   </g>
 </svg>
